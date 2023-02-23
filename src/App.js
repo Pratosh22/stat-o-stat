@@ -5,7 +5,7 @@ import ImageList from "./components/ImageList";
 import "./App.css";
 function App() {
   const CLIENT_ID = "cec7b93ed47b441eb8056ba8ffc7be20";
-  const REDIRECT_URI = "https://spotify-react-nine.vercel.app/";
+  const REDIRECT_URI = "https://spotify-react-git-master-pratosh22.vercel.app/";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize/";
   const RESPONSE_TYPE = "token";
   const scopes = ["user-top-read"];
