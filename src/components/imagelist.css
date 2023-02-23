@@ -1,0 +1,19 @@
+.list{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin: 0;
+    color:white;
+
+}
+.list > div{
+    padding:1rem;
+    
+}
+.list > div >img{
+    border-radius: 10px;
+}
