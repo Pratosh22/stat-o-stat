@@ -9,7 +9,7 @@ function ImageList(props) {
         ) : (
           <div>No Image</div>
         )}
-        {artist.name}
+        <p>{artist.name}</p>
       </div>
     );
   });
@@ -23,13 +23,13 @@ function ImageList(props) {
         ) : (
           <div>No Image</div>
         )}
-        {song.name}
+        <p>{song.name}</p>
       </div>
     );
   });
 
   return (
-    <div className="image-list">
+    <div className="list">
       {props.displayArtists ? renderArtistImages : renderSongImages}
     </div>
   );
