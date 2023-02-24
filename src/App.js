@@ -3,9 +3,10 @@ import axios from "axios";
 import Search from "./components/Search";
 import ImageList from "./components/ImageList";
 import "./App.css";
+import RenderRecom from "./components/RenderRecom";
 function App() {
   const CLIENT_ID = "cec7b93ed47b441eb8056ba8ffc7be20";
-  const REDIRECT_URI = "https://spotify-react-git-master-pratosh22.vercel.app/";
+  const REDIRECT_URI = "http://localhost:3000";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize/";
   const RESPONSE_TYPE = "token";
   const scopes = ["user-top-read"];
@@ -40,6 +41,7 @@ function App() {
 
   const [displaySongs, setDisplaySongs] = useState(false);
   const [displayArtists, setDisplayArtists] = useState(false);
+  const [recom,setRecom] = useState([]);
 
   const searchArtists = async (e, value) => {
     e.preventDefault();
@@ -60,6 +62,8 @@ function App() {
     } else {
       setDisplayArtists(false);
     }
+    setSongs([]);
+    setRecom([]);
     setArtists(data.items);
   };
 
@@ -82,17 +86,38 @@ function App() {
     } else {
       setDisplaySongs(false);
     }
-
+    setArtists([]);
+    setRecom([]);
     setSongs(data.items);
   };
 
+  const getRecommendations = async (e) => {
+    e.preventDefault();
+    const { data } = await axios.get(
+      "https://api.spotify.com/v1/recommendations?",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        params: {
+          seed_artists:"4NHQUGzhtTLFvgF5SZesLK",
+          seed_genres:"pop",
+          seed_tracks:"0c6xIDDpzE81m2q797ordA",
+          limit: 10,
+        },
+      }
+    );
+    setArtists([]);
+    setSongs([]);
+    setRecom(data.tracks);
+  }
   return (
     <div className="App">
       <header className="App-header">
         <h1>Spotify React</h1>
 
         {token ? (
-          <Search onSubmit={searchArtists} onSongs={searchSongs} />
+          <Search onSubmit={searchArtists} onSongs={searchSongs} onRecom={getRecommendations}/>
         ) : (
           <h2>Please Login</h2>
         )}
@@ -112,6 +137,7 @@ function App() {
         displayArtists={displayArtists}
         displaySongs={displaySongs}
       />
+    <RenderRecom recom={recom}/>
     </div>
   );
 }
