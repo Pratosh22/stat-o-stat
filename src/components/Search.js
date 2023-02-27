@@ -1,38 +1,15 @@
-import { useState } from "react";
 import "./search.css";
 function Search(props) {
-  const [displayArtists, setDisplayArtists] = useState(false);
-  const [displaySongs, setDisplaySongs] = useState(false);
-  const [displayRecom, setDisplayRecom] = useState(false);
 
   function handleSongs(e) {
-    if (displaySongs === false) {
-      setDisplaySongs(true);
-    } else {
-      setDisplaySongs(false);
-    }
-    setDisplayArtists(false);
-    props.onSongs(e, displaySongs);
+    props.onSongs(e);
   }
   const handleArtist = (e) => {
-    if (displayArtists === false) {
-      setDisplayArtists(true);
-    } else {
-      setDisplayArtists(false);
-    }
-    setDisplaySongs(false);
-    props.onSubmit(e, displayArtists);
+    props.onSubmit(e);
   };
 
   const handleRecom = (e) => {
-    if (displayRecom === false) {
-      setDisplayRecom(true);
-    } else {
-      setDisplayRecom(false);
-    }
-    setDisplaySongs(false);
-    setDisplayArtists(false);
-    props.onRecom(e, displayRecom);
+    props.onRecom(e);
   };
   
   const handlesubmit = (e) => {
@@ -40,7 +17,7 @@ function Search(props) {
   };
 
   return (
-    <div>
+    <div className="search">
       <form onSubmit={handlesubmit}>
         <button onClick={handleArtist}>Show my top Artists!</button>
         <button onClick={handleSongs}>Show my top Songs! </button>

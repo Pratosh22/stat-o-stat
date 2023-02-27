@@ -1,8 +1,7 @@
 function RecomShow(props){
-    console.log(props.image.images)
     return(
         <div>
-            <img src={props.image.images[1].url} alt="" />
+            <img src={props.image.images[1].url} alt="album0img" />
         </div>
 
     )
