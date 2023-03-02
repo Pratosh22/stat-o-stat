@@ -1,5 +1,5 @@
 import ImageShow from "./ImageShow";
-import './imagelist.css';
+import './css/imagelist.css';
 function RenderArtist(props){
     const renderArtistImages = props.artists.map((artist) => {
         return (

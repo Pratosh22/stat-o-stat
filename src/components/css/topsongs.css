@@ -1,0 +1,11 @@
+.songs>form{
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    display:flex;
+    justify-content: space-evenly;
+}
+
+.active{
+    background-color: #121212;
+    text-decoration: underline;
+}

@@ -23,11 +23,6 @@ body {
       monospace;
   }
   h1{
-    font-family: 'Spotify';
     color:#1DB954;
     margin-top: 2rem;
-  }
-  button{
-    font-family: 'Spotify';
-    
   }

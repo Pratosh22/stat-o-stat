@@ -7,7 +7,7 @@ import RenderRecom from "./components/RenderRecom";
 import RenderArtist from "./components/RenderArtist";
 function App() {
   const CLIENT_ID = "cec7b93ed47b441eb8056ba8ffc7be20";
-  const REDIRECT_URI = "http://localhost:3000";
+  const REDIRECT_URI = "https://spotify-react-ebln05qxg-pratosh22.vercel.app/";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize/";
   const RESPONSE_TYPE = "token";
   const scopes = ["user-top-read"];
@@ -61,9 +61,25 @@ function App() {
     setRecom([]);
     setArtists(data.items);
   };
+ 
+  const getTopArtist = async () => {
+    const { data } = await axios.get(
+      "https://api.spotify.com/v1/me/top/artists?",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        params: {
+          limit: 10,
+          offset: 5,
+          time_range:"long_term"
+        },
+      }
+    );
+    return data.items;
+  };
 
-  const searchSongs = async (e) => {
-    e.preventDefault();
+  const getTopSongs = async () => {
     const { data } = await axios.get(
       "https://api.spotify.com/v1/me/top/tracks?",
       {
@@ -77,6 +93,23 @@ function App() {
         },
       }
     );
+    return data.items;
+  };
+
+  const searchSongs = async (time) => {
+    const { data } = await axios.get(
+      "https://api.spotify.com/v1/me/top/tracks?",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        params: {
+          limit: 10,
+          offset: 5,
+          time_range:time
+        },
+      }
+    );
 
     setArtists([]);
     setRecom([]);
@@ -85,6 +118,11 @@ function App() {
 
   const getRecommendations = async (e) => {
     e.preventDefault();
+    const res=await getTopArtist();
+    const songs=await getTopSongs();
+    const id=res[0].uri;
+    const newId=id.substring(15);
+    console.log(newId);
     const { data } = await axios.get(
       "https://api.spotify.com/v1/recommendations?",
       {
@@ -92,9 +130,9 @@ function App() {
           Authorization: `Bearer ${token}`,
         },
         params: {
-          seed_artists: "1wRPtKGflJrBx9BmLsSwlU",
-          seed_genres: "pop,indie,filmy",
-          seed_tracks: "4thX43Eb58eteV7DriC6H0",
+          seed_artists: newId+","+res[1].uri.substring(15),
+           seed_genres: res[0].genres[0]+res[0].genres[1]+res[1].genres[0]+res[1].genres[1]+res[2].genres[0]+res[2].genres[1],
+          seed_tracks: songs[0].uri.substring(14)+","+songs[1].uri.substring(14),
           limit: 10,
         },
       }
@@ -107,16 +145,6 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Spotify React</h1>
-        
-        {token ? (
-          <Search
-            onSubmit={searchArtists}
-            onSongs={searchSongs}
-            onRecom={getRecommendations}
-          />
-        ) : (
-          <h2>Please Login</h2>
-        )}
         {!token ? (
           <a
             className="login"
@@ -130,9 +158,19 @@ function App() {
           </button>
         )}
       </header>
+      {token ? (
+          <Search
+            onSubmit={searchArtists}
+            onSongs={searchSongs}
+            onRecom={getRecommendations}
+          />
+        ) : (
+          <h2>Please Login</h2>
+        )}
       <RenderArtist artists={artists} />
       <RenderSongs songs={songs} />
       <RenderRecom recom={recom} />
+      
     </div>
   );
 }

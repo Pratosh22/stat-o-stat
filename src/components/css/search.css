@@ -11,13 +11,16 @@ button{
     margin: 4px 2px;
     cursor: pointer;
 }
+.main{
+    width:100%;
+}
 .search{
     width:100%;
     display:flex;
-    justify-content:space-between;
+    justify-content:space-around;
 }
 .search > form{
     width:100%;
     display:flex;
-    justify-content:space-around;
+    justify-content:space-evenly;
 }

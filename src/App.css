@@ -4,7 +4,6 @@
 
 .login{
   margin-top: 2rem;
-  margin-bottom: 2rem;
 }
 h2{
   margin-top: 2rem;
@@ -12,11 +11,12 @@ h2{
 }
 .App-header {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   font-size: calc(10px + 2vmin);
   color: white;
+  margin-bottom: 2rem;
 }
 
 .App-link {
@@ -27,7 +27,6 @@ form{
 }
 .logout{
   margin-top: 2rem;
-  margin-bottom: 2rem;
 }
 p{
   color:white;

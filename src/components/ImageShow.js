@@ -2,7 +2,7 @@ function ImageShow(props){
     
     return (
         <div>
-            <img src={props.image.images[1].url} alt="artist-img"/>
+            <img src={props.image.images[1].url}  style={{borderRadius:"20px"}}alt="artist-img"/>
         </div>
         
     )
