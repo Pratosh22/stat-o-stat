@@ -41,8 +41,42 @@ function App() {
   const [artists, setArtists] = useState([]);
   const [songs, setSongs] = useState([]);
   const [recom, setRecom] = useState([]);
+  
+  const getTopArtist = async () => {
+    const { data } = await axios.get(
+      "https://api.spotify.com/v1/me/top/artists?",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        params: {
+          limit: 3,
+          offset: 5,
+          time_range:"long_term"
+        },
+      }
+    );
+    return data.items;
+  };
 
-  const searchArtists = async (e) => {
+  const getTopSongs = async () => {
+    const { data } = await axios.get(
+      "https://api.spotify.com/v1/me/top/tracks?",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        params: {
+          limit: 4,
+          offset: 5,
+          time_range:"long_term"
+        },
+      }
+    );
+    return data.items;
+  };
+  
+   const searchArtists = async (e) => {
     e.preventDefault();
     const { data } = await axios.get(
       "https://api.spotify.com/v1/me/top/artists?",
@@ -60,42 +94,8 @@ function App() {
     setSongs([]);
     setRecom([]);
     setArtists(data.items);
-  };
- 
-  const getTopArtist = async () => {
-    const { data } = await axios.get(
-      "https://api.spotify.com/v1/me/top/artists?",
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        params: {
-          limit: 10,
-          offset: 5,
-          time_range:"long_term"
-        },
-      }
-    );
-    return data.items;
-  };
-
-  const getTopSongs = async () => {
-    const { data } = await axios.get(
-      "https://api.spotify.com/v1/me/top/tracks?",
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        params: {
-          limit: 10,
-          offset: 5,
-          time_range:"long_term"
-        },
-      }
-    );
-    return data.items;
-  };
-
+  };  
+  
   const searchSongs = async (time) => {
     const { data } = await axios.get(
       "https://api.spotify.com/v1/me/top/tracks?",
