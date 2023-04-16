@@ -13,6 +13,6 @@ function RenderSongs(props) {
       </div>
     );
   });
-  return <div className="list">{renderSongImages}</div>;
+  return <div className="list card">{renderSongImages}</div>;
 }
 export default RenderSongs;

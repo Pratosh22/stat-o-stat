@@ -14,7 +14,7 @@ function RenderArtist(props){
         );
       });
     return(
-        <div className="list">{renderArtistImages}
+        <div className="list card">{renderArtistImages}
         </div>
     )
 }

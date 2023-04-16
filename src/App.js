@@ -2,12 +2,10 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Search from "./components/Search";
 import "./App.css";
-import RenderSongs from "./components/RenderSongs";
-import RenderRecom from "./components/RenderRecom";
-import RenderArtist from "./components/RenderArtist";
+import RenderComponent from "./components/RenderComponent";
 function App() {
   const CLIENT_ID = "cec7b93ed47b441eb8056ba8ffc7be20";
-  const REDIRECT_URI = "https://spotify-react-nine.vercel.app/";
+  const REDIRECT_URI = "http://localhost:3000";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize/";
   const RESPONSE_TYPE = "token";
   const scopes = ["user-top-read"];
@@ -41,7 +39,7 @@ function App() {
   const [artists, setArtists] = useState([]);
   const [songs, setSongs] = useState([]);
   const [recom, setRecom] = useState([]);
-  
+  const [active,setActive]=useState(false);
   const getTopArtist = async () => {
     const { data } = await axios.get(
       "https://api.spotify.com/v1/me/top/artists?",
@@ -141,6 +139,11 @@ function App() {
     setSongs([]);
     setRecom(data.tracks);
   };
+
+  const handleActive=()=>{
+    setActive(true);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -160,6 +163,7 @@ function App() {
       </header>
       {token ? (
           <Search
+            handleActive={handleActive}
             onSubmit={searchArtists}
             onSongs={searchSongs}
             onRecom={getRecommendations}
@@ -167,10 +171,9 @@ function App() {
         ) : (
           <h2>Please Login</h2>
         )}
-      <RenderArtist artists={artists} />
-      <RenderSongs songs={songs} />
-      <RenderRecom recom={recom} />
-      
+      {
+        active && <RenderComponent artists={artists} songs={songs} recom={recom} />
+      }
     </div>
   );
 }

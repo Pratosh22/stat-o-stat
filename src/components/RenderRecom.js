@@ -8,6 +8,6 @@ function RenderRecom(props) {
       </div>
     );
   });
-  return <div className="list">{renderRecom}</div>;
+  return <div className="list card">{renderRecom}</div>;
 }
 export default RenderRecom;

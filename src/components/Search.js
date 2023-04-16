@@ -6,17 +6,21 @@ function Search(props) {
   
   function handleSongs(e) {
     setDisplay("songs");
+    props.handleActive();
   }
   const handleArtist = (e) => {
     props.onSubmit(e);
+    props.handleActive();
   };
 
   const handleRecom = (e) => {
     props.onRecom(e);
+    props.handleActive();
   };
 
   const handlesubmit = (e) => {
     e.preventDefault();
+    props.handleActive();
   };
 
   return (
@@ -30,7 +34,10 @@ function Search(props) {
           </form>
         </div>
       ) : (
-        <TopSongs onSubmit={props.onSongs}/>
+        <div>
+          <button onClick={() => setDisplay("start") }>Back</button>
+          <TopSongs onSubmit={props.onSongs}/>
+        </div>
       )}
     </div>
   );

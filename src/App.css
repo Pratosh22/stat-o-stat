@@ -2,13 +2,15 @@
   text-align: center;
 }
 
-.login{
+.login {
   margin-top: 2rem;
 }
-h2{
+
+h2 {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
+
 .App-header {
   display: flex;
   flex-direction: row;
@@ -22,12 +24,23 @@ h2{
 .App-link {
   color: #61dafb;
 }
-form{
+
+form {
   margin-top: 2rem;
 }
-.logout{
+
+.logout {
   margin-top: 2rem;
 }
-p{
-  color:white;
+
+p {
+  color: white;
+}
+
+.card {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 15px;
+  background-color: #282c34;
+  color: white;
 }
