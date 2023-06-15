@@ -1,0 +1,48 @@
+body{
+    overflow-x: hidden;
+}
+hr{
+    margin: 0 auto;
+    width:70%;
+}
+ul{
+    list-style: none;
+    padding: 20px;
+}
+li{
+    margin-bottom: 20px;
+}
+i{
+    margin-right: 20px;
+}
+.sidebar{
+    font-size: 1rem;
+    position: fixed;
+    margin-top: 25px;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    color:#e5e5e5;
+    background: #121212;
+    z-index: 100;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.sidebar__title{
+    padding: 20px 0;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.sidebar__profile{
+    padding: 0 20px;
+    margin-bottom: 20px;
+}
+.sidebar__menu{
+    margin-left:20px ;
+    margin-bottom: 20px;
+    text-align: justify;
+}

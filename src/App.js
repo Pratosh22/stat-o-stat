@@ -3,10 +3,12 @@ import axios from "axios";
 import Search from "./components/Search";
 import "./App.css";
 import logo from "./logo.png";
+import temp from "./temp.webp";
 import RenderComponent from "./components/RenderComponent";
+import SideBar from "./components/SideBar/SideBar";
 function App() {
   const CLIENT_ID = "cec7b93ed47b441eb8056ba8ffc7be20";
-  const REDIRECT_URI = "https://spotify-react-nine.vercel.app/";
+  const REDIRECT_URI = "http://localhost:3000";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize/";
   const RESPONSE_TYPE = "token";
   const scopes = ["user-top-read"];
@@ -172,16 +174,21 @@ function App() {
         )}
       </header>
       {token ? (
-        <Search
-          handleActive={handleActive}
-          onSubmit={searchArtists}
-          onSongs={searchSongs}
-          onRecom={getRecommendations}
-        />
+        <div className="main">
+          <SideBar token={token}/>
+        </div>
       ) : (
-        <div className="about">
-          <h4>View your most streamed Artist and Songs at <span>one place.</span></h4>
-          <h4>Discover new songs and playlists made <span>for you.</span></h4>
+        <div className="wrapper">
+          <div className="about">
+            <h4>
+              View your most streamed Artist and Songs at{" "}
+              <span>one place.</span>
+            </h4>
+            <h4>
+              Discover new songs and playlists made <span>for you.</span>
+            </h4>
+          </div>
+          <img src={temp} alt="" style={{width:"50%",paddingTop:"40px"}}/>
         </div>
       )}
       {active && (

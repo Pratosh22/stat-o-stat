@@ -63,17 +63,18 @@ a{
 
 .about{
   box-shadow: 0 0 10px 0 rgba(0,0,0,0.3);
+  text-align: justify;
   border-radius: 20px;
   width: 80%;
   margin:0 auto;
   padding: 20px;
-  margin-top:100px;
+  margin-top:80px;
   font-size: 30px;
   color:white;
 }
 
 .about h4{
-  padding-bottom: 30px;
+  padding-bottom: 20px;
   margin:0 auto;
   width: 70%;
 }
