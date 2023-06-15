@@ -22,7 +22,7 @@ body {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
   }
-  h1{
+  span{
     color:#1DB954;
-    margin-top: 2rem;
+   
   }
