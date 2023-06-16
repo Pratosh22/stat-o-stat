@@ -2,16 +2,16 @@ import axios from 'axios';
 
 const API_BASE_URL = 'https://api.spotify.com/v1'; // API base URL
 
-export const getTopArtists = async (token) => {
+export const getTopArtists = async (token,limit,time) => {
   try {
     const { data } = await axios.get(`${API_BASE_URL}/me/top/artists`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
       params: {
-        limit: 2,
+        limit: limit,
         offset: 5,
-        time_range: 'short_term',
+        time_range: time,
       },
     });
     return data.items;
@@ -21,16 +21,16 @@ export const getTopArtists = async (token) => {
   }
 };
 
-export const getTopSongs = async (token) => {
+export const getTopSongs = async (token,limit,time) => {
   try {
     const { data } = await axios.get(`${API_BASE_URL}/me/top/tracks`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
       params: {
-        limit: 3,
+        limit: limit,
         offset: 5,
-        time_range: 'short_term',
+        time_range: time,
       },
     });
     return data.items;

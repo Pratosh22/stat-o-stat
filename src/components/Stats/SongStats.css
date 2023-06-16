@@ -1,0 +1,24 @@
+hr{
+    background-color: #7F7F7F;
+}
+h2{
+    margin-top: 20px;
+}
+.header{
+    display: flex;
+    color: #AAAAAA;
+    margin-left: 270px;
+    margin-top: 20px;
+    justify-content: space-around;
+}
+.stats-container{
+    display: flex;
+    margin-left: 270px;
+    margin-top: 10px;
+}
+.stat__title{
+    justify-self: flex-start;
+    font-size: 20px;
+    color:#AAAAAA;
+    font-weight: 200;
+}

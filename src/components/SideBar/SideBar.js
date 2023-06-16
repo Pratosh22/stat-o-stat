@@ -1,11 +1,13 @@
 import React from "react";
-import { useState, useEffect } from "react";
 import axios from "axios";
 import "./Sidebar.css";
-function SideBar(props) {
-  const [user, setUser] = useState([]);
 
-  useEffect(() => {
+function SideBar(props) {
+  const [user, setUser] = React.useState([]);
+  const [selectedComponent, setSelectedComponent] = React.useState("home");
+
+ 
+  React.useEffect(() => {
     const getUser = async () => {
       const { data } = await axios.get("https://api.spotify.com/v1/me", {
         headers: {
@@ -17,7 +19,13 @@ function SideBar(props) {
     getUser();
   }, [props.token]);
 
+  const handleMenuClick = (component) => {
+    props.handleMenuClick(component);
+  };
+
+  const followers = user.followers ? user.followers.total : null;
   const photo = user.images ? user.images[0].url : null;
+
   return (
     <div>
       <div className="sidebar">
@@ -25,15 +33,26 @@ function SideBar(props) {
           <h1>Welcome</h1>
         </div>
         <div className="sidebar__profile">
-          <img src={photo} alt="profile" style={{borderRadius:"50%",width: "100px"}}/>
+          <img
+            src={photo}
+            alt="profile"
+            style={{ borderRadius: "50%", width: "100px" }}
+          />
           <h3>{user.display_name}</h3>
+          <h5 className="followers">Followers: {followers}</h5>
         </div>
         <hr></hr>
         <div className="sidebar__menu">
           <ul>
-            <li><i className="fa-solid fa-house"></i>Home</li>
-            <li><i className="fa-sharp fa-solid fa-chart-simple"></i>Stats</li>
-            <li><i className="fa-solid fa-music"></i>Playlists</li>
+            <li onClick={() => handleMenuClick("home")}>
+              <i className="fa-solid fa-house"></i>Home
+            </li>
+            <li onClick={() => handleMenuClick("stats")}>
+              <i className="fa-sharp fa-solid fa-chart-simple"></i>Stats
+            </li>
+            <li onClick={() => handleMenuClick("playlists")}>
+              <i className="fa-solid fa-music"></i>Playlists
+            </li>
           </ul>
         </div>
       </div>

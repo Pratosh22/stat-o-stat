@@ -1,9 +1,12 @@
-import { useState, useEffect } from "react";
+import React, { useState,useEffect } from "react";
 import "./App.css";
 import logo from "./logo.png";
 import temp from "./temp.webp";
 import SideBar from "./components/SideBar/SideBar";
 import Home from "./components/Home/Home";
+import Stats from "./components/Stats/SongStats";
+import Playlists from "./components/PlayLists/PlayList";
+
 function App() {
   const CLIENT_ID = "cec7b93ed47b441eb8056ba8ffc7be20";
   const REDIRECT_URI = "http://localhost:3000";
@@ -11,28 +14,38 @@ function App() {
   const RESPONSE_TYPE = "token";
   const scopes = ["user-top-read"];
   const [token, setToken] = useState("");
+  const [selectedComponent, setSelectedComponent] = useState("home");
 
+  const handleMenuClick = (component) => {
+    setSelectedComponent(component);
+  };
+
+  
   useEffect(() => {
     const hash = window.location.hash;
-    let token = window.localStorage.getItem("token");
-
-    if (!token && hash) {
-      token = hash
+    let receivedToken = window.localStorage.getItem("token");
+  
+    if (!receivedToken && hash) {
+      receivedToken = hash
         .substring(1)
         .split("&")
         .find((elem) => elem.startsWith("access_token"))
         .split("=")[1];
-
+  
       window.location.hash = "";
-      window.localStorage.setItem("token", token);
+      window.localStorage.setItem("token", receivedToken);
     }
-    setToken(token);
+    
+    setToken(receivedToken);
   }, []);
+  
+
 
   const logout = () => {
     setToken("");
     window.localStorage.removeItem("token");
-  };
+  };  
+  
 
   return (
     <div className="App">
@@ -55,8 +68,16 @@ function App() {
       </header>
       {token ? (
         <div className="main">
-          <SideBar token={token} />
-          <Home token={token} />
+          <SideBar token={token} handleMenuClick={handleMenuClick} />
+          <div className="content">
+            {selectedComponent === "home" ? (
+              <Home token={token} />
+            ) : selectedComponent === "stats" ? (
+              <Stats token={token} />
+            ) : (
+              <Playlists token={token} />
+            )}
+          </div>
         </div>
       ) : (
         <div className="wrapper">
@@ -75,4 +96,5 @@ function App() {
     </div>
   );
 }
+
 export default App;
