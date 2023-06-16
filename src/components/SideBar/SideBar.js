@@ -31,9 +31,9 @@ function SideBar(props) {
         <hr></hr>
         <div className="sidebar__menu">
           <ul>
-            <li><i class="fa-solid fa-house"></i>Home</li>
-            <li><i class="fa-sharp fa-solid fa-chart-simple"></i>Stats</li>
-            <li><i class="fa-solid fa-music"></i>Playlists</li>
+            <li><i className="fa-solid fa-house"></i>Home</li>
+            <li><i className="fa-sharp fa-solid fa-chart-simple"></i>Stats</li>
+            <li><i className="fa-solid fa-music"></i>Playlists</li>
           </ul>
         </div>
       </div>

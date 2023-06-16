@@ -1,0 +1,10 @@
+
+.home__title {
+    display: flex;
+    margin-left:300px; 
+    width: 70%;
+    font-size: 2.0rem;
+    font-weight: 600;
+    color: #1DB954;
+    margin-bottom: 20px;
+  }

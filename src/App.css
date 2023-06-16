@@ -2,8 +2,15 @@
   text-align: center;
 }
 
-.login {
+.login__button {
+  width:150px;
   margin-top: 2rem;
+  margin-bottom: 2rem;
+  height:35px;
+  border:none;
+  border-radius: 10px;
+  background-color: #282c34;
+  color: white;
 }
 
 h2 {
@@ -13,6 +20,7 @@ h2 {
 
 .App-header {
   display: flex;
+  z-index: 9999;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
@@ -44,13 +52,20 @@ p {
   background-color: #282c34;
   color: white;
 }
-button{
+.logout{
   width:150px;
   margin-top: 2rem;
   margin-bottom: 2rem;
+  height:35px;
+  border:none;
   border-radius: 10px;
   background-color: #282c34;
   color: white;
+}
+.logout:hover{
+  background-color: #1DB954;
+  color: black;
+  cursor: pointer;
 }
 a{
   margin-top: 2rem;
@@ -77,4 +92,9 @@ a{
   padding-bottom: 20px;
   margin:0 auto;
   width: 70%;
+}
+
+main{
+  display: flex;
+  position: relative;
 }
