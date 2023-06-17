@@ -4,7 +4,7 @@ import logo from "./logo.png";
 import temp from "./temp.webp";
 import SideBar from "./components/SideBar/SideBar";
 import Home from "./components/Home/Home";
-import Stats from "./components/Stats/SongStats";
+import Stats from "./components/Stats/Stats";
 import Playlists from "./components/PlayLists/PlayList";
 
 function App() {

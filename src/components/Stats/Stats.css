@@ -4,6 +4,15 @@ hr{
 h2{
     margin-top: 20px;
 }
+.stats .header h3 {
+    display: inline-block;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  .stats .header h3.active {
+    color: #1DB954;
+  }
 .header{
     display: flex;
     color: #AAAAAA;

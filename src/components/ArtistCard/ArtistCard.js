@@ -1,15 +1,16 @@
 import React from 'react';
 import { getTopArtists } from '../../api';
 import { useState,useEffect } from 'react';
+import Spinner from '../Spinner/Spinner';
 import './ArtistCard.css';
-function ArtistCard({token}) {
+function ArtistCard({token,state}) {
     const [artists, setArtists] = useState([]);
     const [loader,setLoader]=useState(false);
     useEffect(() => {
         setLoader(true)
         const fetchData = async () => {
             try {
-                const topArtists = await getTopArtists(token, 10,'short_term');
+                const topArtists = await getTopArtists(token, 10, state);
                 setArtists(topArtists);
                 setLoader(false)
             } catch (error) {
@@ -18,11 +19,11 @@ function ArtistCard({token}) {
             }
         };
         fetchData();
-    }, [token]);
+    }, [state,token]);
 
     return (
         <div className='artist'>
-            {loader && <div className="loader"></div>}
+            {loader && <Spinner />}
             {artists.map((artist) => {
                 return (
                     <div className='card' key={artist.id}>
