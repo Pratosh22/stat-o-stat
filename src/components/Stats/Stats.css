@@ -2,8 +2,12 @@ hr{
     background-color: #7F7F7F;
 }
 h2{
-    margin-top: 20px;
+    margin-top: 30px;
 }
+.stats .header h3:hover {
+    color: #1DB954;
+    cursor: pointer;
+  }
 .stats .header h3 {
     display: inline-block;
     margin-right: 10px;
@@ -22,12 +26,18 @@ h2{
 }
 .stats-container{
     display: flex;
+    flex-direction:column ;
     margin-left: 270px;
     margin-top: 10px;
 }
 .stat__title{
-    justify-self: flex-start;
-    font-size: 20px;
+    display: flex;
+    justify-content: space-around;
+    font-size: 15px;
     color:#AAAAAA;
     font-weight: 200;
+}
+.stat__title h2:hover{
+    color: #1DB954;
+    cursor: pointer;
 }

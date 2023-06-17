@@ -1,0 +1,37 @@
+h4{
+    display: flex;
+    align-self: flex-start;
+    color: #1DB954;
+    
+}
+.genre{
+    display: flex;
+    justify-content: space-between;
+}
+.genre__list{
+    margin-top: 2rem;
+    margin-right: 5rem;
+}
+.genre__table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .genre__table th,
+  .genre__table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+  }
+  
+  .genre__table th {
+    background-color: #f2f2f2;
+  }
+  
+  .genre__table tr {
+    background-color: #f9f9f9;
+  }
+  
+  .genre__table tr:hover {
+    background-color: #eaeaea;
+  }
+  

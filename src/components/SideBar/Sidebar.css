@@ -9,7 +9,10 @@ ul{
 li{
     margin-bottom: 20px;
 }
-
+.active{
+    color: #1DB954;
+    
+}
 li:hover{
     color: #1DB954;
     cursor: pointer;

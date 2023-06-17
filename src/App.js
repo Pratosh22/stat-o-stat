@@ -19,7 +19,6 @@ function App() {
   const handleMenuClick = (component) => {
     setSelectedComponent(component);
   };
-
   
   useEffect(() => {
     const hash = window.location.hash;

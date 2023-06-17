@@ -40,12 +40,25 @@ function SongCard({ songs }) {
           <div className="card" key={song.id}>
             <div className="overlayer">
               {isSongActive ? (
-                <i className="fa-solid fa-pause" onClick={() => handleAudio(song)}></i>
+                <i
+                  className="fa-solid fa-pause"
+                  onClick={() => handleAudio(song)}
+                ></i>
               ) : (
-                <i className="far fa-play-circle" onClick={() => handleAudio(song)}></i>
+                <i
+                  className="far fa-play-circle"
+                  onClick={() => handleAudio(song)}
+                ></i>
               )}
             </div>
-            <img src={song.album.images[0].url} alt="album-cover" />
+            <img
+              src={
+                song.album.images[0].url
+                  ? song.album.images[0].url
+                  : "https://www.google.com/url?sa=i&url=https%3A%2F%2Fcityofmebanenc.gov%2Fparks-facilities-trails%2Fplaceholder-image%2F&psig=AOvVaw3zpYvrcMVPKG_p9PV3Neni&ust=1687082480240000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCPjw9pCGyv8CFQAAAAAdAAAAABAE"
+              }
+              alt="album-cover"
+            />
             <div className="title">{song.name}</div>
           </div>
         );

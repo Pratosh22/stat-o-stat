@@ -21,7 +21,10 @@ export const getTopArtists = async (token, limit, time) => {
     return data.items;
   } catch (error) {
     alert('Error fetching top artists:', error);
-    throw error;
+    if (error.response && error.response.status === 401) {
+      // Token expired or invalid
+      localStorage.removeItem("token"); // Delete the token from local storage
+    }
   }
 };
 
@@ -40,7 +43,10 @@ export const getTopSongs = async (token, limit, time) => {
     return data.items;
   } catch (error) {
     alert('Error fetching top songs:', error);
-    throw error;
+    if (error.response && error.response.status === 401) {
+      // Token expired or invalid
+      localStorage.removeItem("token"); // Delete the token from local storage
+    }
   }
 };
 
@@ -63,6 +69,9 @@ export const getRecommendations = async (token, artists, songs) => {
     return data.tracks;
   } catch (error) {
     alert('Error fetching recommendations:', error);
-    throw error;
+    if (error.response && error.response.status === 401) {
+      // Token expired or invalid
+      localStorage.removeItem("token"); // Delete the token from local storage
+    }
   }
 };

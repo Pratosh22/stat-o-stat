@@ -6,7 +6,6 @@ function SideBar(props) {
   const [user, setUser] = React.useState([]);
   const [selectedComponent, setSelectedComponent] = React.useState("home");
 
- 
   React.useEffect(() => {
     const getUser = async () => {
       const { data } = await axios.get("https://api.spotify.com/v1/me", {
@@ -20,6 +19,7 @@ function SideBar(props) {
   }, [props.token]);
 
   const handleMenuClick = (component) => {
+    setSelectedComponent(component);
     props.handleMenuClick(component);
   };
 
@@ -44,13 +44,22 @@ function SideBar(props) {
         <hr></hr>
         <div className="sidebar__menu">
           <ul>
-            <li onClick={() => handleMenuClick("home")}>
+            <li
+              className={selectedComponent === "home" ? "active" : ""}
+              onClick={() => handleMenuClick("home")}
+            >
               <i className="fa-solid fa-house"></i>Home
             </li>
-            <li onClick={() => handleMenuClick("stats")}>
+            <li
+              className={selectedComponent === "stats" ? "active" : ""}
+              onClick={() => handleMenuClick("stats")}
+            >
               <i className="fa-sharp fa-solid fa-chart-simple"></i>Stats
             </li>
-            <li onClick={() => handleMenuClick("playlists")}>
+            <li
+              className={selectedComponent === "playlists" ? "active" : ""}
+              onClick={() => handleMenuClick("playlists")}
+            >
               <i className="fa-solid fa-music"></i>Playlists
             </li>
           </ul>
