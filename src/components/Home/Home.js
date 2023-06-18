@@ -10,6 +10,8 @@ function Home({ token }) {
   const [songs, setSongs] = useState([]);
   const [recom, setRecom] = useState([]);
   const [refresh,setRefresh]=useState(false);
+  const [songCard,setSongCard]=useState(true);
+  
   useEffect(() => {
     setLoader(true)
     const fetchData = async () => {
@@ -19,7 +21,6 @@ function Home({ token }) {
         setArtists(topArtists);
         setSongs(topSongs);
         handleRecommendations(topArtists, topSongs);
-        setLoader(false)
       } catch (error) {
         // Handle error
         console.log(error);
@@ -33,6 +34,7 @@ function Home({ token }) {
     try {
       const recommendedTracks = await getRecommendations(token, artists, songs);
       setRecom(recommendedTracks);
+      setLoader(false)
     } catch (error) {
       // Handle error
       console.log(error);
@@ -42,6 +44,8 @@ function Home({ token }) {
   const reload = () => {
     setRefresh(!refresh);
   };
+
+  
 
   return (
     
@@ -54,7 +58,7 @@ function Home({ token }) {
         </div>
       </div>
       <div className="songs__list">
-        <SongCard songs={recom} />
+        <SongCard songs={recom} state={songCard}/>
       </div>
     </div>
   );

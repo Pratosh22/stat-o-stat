@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Stats.css";
 import ArtistCard from "../ArtistCard/ArtistCard";
 import GenreStat from "./GenreStat/GenreStat";
+import SongStat from "./SongStat/SongStat";
 
 function SongStats({ token }) {
   const [active, setActive] = useState("4weeks");
@@ -84,9 +85,9 @@ function SongStats({ token }) {
           {selected === "artists" ? (
             <ArtistCard token={token} state={timerange}  />
           ) : selected === "genres" ? (
-            <GenreStat token={token} state={timerange} />
+            <GenreStat token={token}  />
           ) : (
-            <h1>Tracks</h1>
+            <SongStat token={token} state={timerange} />
           )}
         </div>
       </div>

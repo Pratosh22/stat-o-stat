@@ -106,7 +106,7 @@ function GenreStat({ token, state }) {
      {loader && <Spinner />}
       <div className="main__chart" style={{ padding: "20px", width: "50%" }}>
         {chartDataUpdate && <Doughnut data={chartData} options={options} />}
-        <h4>*Data is based on All-Time streaming</h4>
+        <h4 className="info">*Data is based on All-Time streaming</h4>
       </div>
       <div className="genre__list">
         <table className="genre__table">
@@ -132,7 +132,7 @@ function GenreStat({ token, state }) {
               })}
           </tbody>
         </table>
-        <h4 style={{ marginTop: "30px" }}>*Top 10 data is shown</h4>
+        <h4 className="info" style={{ marginTop: "30px" }}>*Top 10 data is shown</h4>
       </div>
     </div>
   );

@@ -4,7 +4,11 @@
   flex-wrap: wrap;
   margin-left:250px;
 }
-
+.songStat{
+	  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 .cards {
 	display: flex;
 	flex-wrap: wrap;

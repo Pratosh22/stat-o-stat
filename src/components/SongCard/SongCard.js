@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Smallcard.css";
 
-function SongCard({ songs }) {
+function SongCard({ songs,state }) {
   const [activeSong, setActiveSong] = useState(null);
   const [audio, setAudio] = useState(null);
 
@@ -32,7 +32,7 @@ function SongCard({ songs }) {
   };
 
   return (
-    <div className="recom">
+    <div className={state ? "recom" : "songStat"}>
       {songs.map((song) => {
         const isSongActive = activeSong === song.id;
 

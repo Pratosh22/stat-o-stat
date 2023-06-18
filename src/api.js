@@ -75,3 +75,21 @@ export const getRecommendations = async (token, artists, songs) => {
     }
   }
 };
+
+export const getPlaylist = async (token, id) => {
+  try {
+    const { data } = await axiosInstance.get(`${API_BASE_URL}/users/${id}/playlists`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        public: false,
+      },
+    });
+    return data;
+  } catch (error) {
+    alert('Error fetching playlist:', error);
+    if (error.response && error.response.status === 401) {
+      // Token expired or invalid
+      localStorage.removeItem("token"); // Delete the token from local storage
+    }
+  }
+}

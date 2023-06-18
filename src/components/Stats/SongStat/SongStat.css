@@ -1,0 +1,5 @@
+.song__stats{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 0;
+}

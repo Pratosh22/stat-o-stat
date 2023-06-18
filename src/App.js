@@ -12,10 +12,10 @@ function App() {
   const REDIRECT_URI = "http://localhost:3000";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize/";
   const RESPONSE_TYPE = "token";
-  const scopes = ["user-top-read"];
+  const scopes = ["user-top-read","playlist-read-private","playlist-read-collaborative","playlist-modify-public","playlist-modify-private"];
   const [token, setToken] = useState("");
   const [selectedComponent, setSelectedComponent] = useState("home");
-
+  const [userid,setuserid]=useState('');
   const handleMenuClick = (component) => {
     setSelectedComponent(component);
   };
@@ -39,13 +39,14 @@ function App() {
   }, []);
   
 
-
   const logout = () => {
     setToken("");
     window.localStorage.removeItem("token");
   };  
   
-
+  const getUserId=(id)=>{
+    setuserid(id);
+  }
   return (
     <div className="App">
       <header className="App-header">
@@ -67,14 +68,14 @@ function App() {
       </header>
       {token ? (
         <div className="main">
-          <SideBar token={token} handleMenuClick={handleMenuClick} />
+          <SideBar token={token} handleMenuClick={handleMenuClick} user={getUserId} />
           <div className="content">
             {selectedComponent === "home" ? (
-              <Home token={token} />
+              <Home token={token} user={getUserId}/>
             ) : selectedComponent === "stats" ? (
               <Stats token={token} />
             ) : (
-              <Playlists token={token} />
+              <Playlists token={token} id={userid}/>
             )}
           </div>
         </div>
@@ -82,11 +83,11 @@ function App() {
         <div className="wrapper">
           <div className="about">
             <h4>
-              View your most streamed Artist and Songs at{" "}
-              <span>one place.</span>
+              View your most streamed Artist and Songs at
+              <span> one place.</span>
             </h4>
             <h4>
-              Discover new songs and playlists made <span>for you.</span>
+              Discover new songs and playlists made <span> for you.</span>
             </h4>
           </div>
           <img src={temp} alt="" style={{ width: "50%", paddingTop: "40px" }} />

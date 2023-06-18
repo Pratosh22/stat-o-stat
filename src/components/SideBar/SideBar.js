@@ -14,9 +14,12 @@ function SideBar(props) {
         },
       });
       setUser(data);
+      props.user(data.id);
     };
     getUser();
-  }, [props.token]);
+    
+  }, [props.token,props.user]);
+  
 
   const handleMenuClick = (component) => {
     setSelectedComponent(component);
@@ -25,6 +28,10 @@ function SideBar(props) {
 
   const followers = user.followers ? user.followers.total : null;
   const photo = user.images ? user.images[0].url : null;
+ 
+
+  
+  //send userid to app.js
 
   return (
     <div>
