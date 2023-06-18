@@ -13,17 +13,14 @@
   color: white;
 }
 
-h2 {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
-
 .App-header {
+  width: 70%;
+  margin-left: 270px;
   display: flex;
   z-index: 9999;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   font-size: calc(10px + 2vmin);
   color: white;
   margin-bottom: 2rem;

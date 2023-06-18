@@ -2,41 +2,51 @@ import axios from 'axios';
 
 const API_BASE_URL = 'https://api.spotify.com/v1'; // API base URL
 
-export const getTopArtists = async (token) => {
+const axiosInstance = axios.create({
+  timeout: 10000, // Set the timeout to 15 seconds
+});
+
+export const getTopArtists = async (token, limit, time) => {
   try {
-    const { data } = await axios.get(`${API_BASE_URL}/me/top/artists`, {
+    const { data } = await axiosInstance.get(`${API_BASE_URL}/me/top/artists`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
       params: {
-        limit: 2,
+        limit: limit,
         offset: 5,
-        time_range: 'short_term',
+        time_range: time,
       },
     });
     return data.items;
   } catch (error) {
-    console.error('Error fetching top artists:', error);
-    throw error;
+    alert('Error fetching top artists:', error);
+    if (error.response && error.response.status === 401) {
+      // Token expired or invalid
+      localStorage.removeItem("token"); // Delete the token from local storage
+    }
   }
 };
 
-export const getTopSongs = async (token) => {
+export const getTopSongs = async (token, limit, time) => {
   try {
-    const { data } = await axios.get(`${API_BASE_URL}/me/top/tracks`, {
+    const { data } = await axiosInstance.get(`${API_BASE_URL}/me/top/tracks`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
       params: {
-        limit: 3,
+        limit: limit,
         offset: 5,
-        time_range: 'short_term',
+        time_range: time,
       },
     });
     return data.items;
   } catch (error) {
-    console.error('Error fetching top songs:', error);
-    throw error;
+    alert('Error fetching top songs:', error);
+    if (error.response && error.response.status === 401) {
+      // Token expired or invalid
+      localStorage.removeItem("token"); // Delete the token from local storage
+    }
   }
 };
 
@@ -45,12 +55,12 @@ export const getRecommendations = async (token, artists, songs) => {
     const artistIds = artists.map((artist) => artist.uri.substring(15));
     const trackIds = songs.map((song) => song.uri.substring(14));
 
-    const { data } = await axios.get(`${API_BASE_URL}/recommendations`, {
+    const { data } = await axiosInstance.get(`${API_BASE_URL}/recommendations`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
       params: {
-        limit:10,
+        limit: 10,
         seed_artists: artistIds.join(','),
         seed_tracks: trackIds.join(','),
       },
@@ -58,7 +68,28 @@ export const getRecommendations = async (token, artists, songs) => {
 
     return data.tracks;
   } catch (error) {
-    console.error('Error fetching recommendations:', error);
-    throw error;
+    alert('Error fetching recommendations:', error);
+    if (error.response && error.response.status === 401) {
+      // Token expired or invalid
+      localStorage.removeItem("token"); // Delete the token from local storage
+    }
   }
 };
+
+export const getPlaylist = async (token, id) => {
+  try {
+    const { data } = await axiosInstance.get(`${API_BASE_URL}/users/${id}/playlists`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        public: false,
+      },
+    });
+    return data;
+  } catch (error) {
+    alert('Error fetching playlist:', error);
+    if (error.response && error.response.status === 401) {
+      // Token expired or invalid
+      localStorage.removeItem("token"); // Delete the token from local storage
+    }
+  }
+}

@@ -4,7 +4,11 @@
   flex-wrap: wrap;
   margin-left:250px;
 }
-
+.songStat{
+	  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 .cards {
 	display: flex;
 	flex-wrap: wrap;
@@ -61,4 +65,15 @@
 }
 .fa-play-circle:hover {
 	transform: scale(1.1);
+}
+
+.overlayer .fa-pause{
+  color: #fff;
+  font-size: 73px;
+  margin-top: 53px;
+  transition: 100ms ease-in-out;
+}
+
+.fa-pause:hover{
+  transform: scale(1.1);
 }

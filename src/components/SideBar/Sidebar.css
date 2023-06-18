@@ -9,8 +9,23 @@ ul{
 li{
     margin-bottom: 20px;
 }
+.active{
+    color: #1DB954;
+    
+}
+li:hover{
+    color: #1DB954;
+    cursor: pointer;
+}
+
 i{
     margin-right: 20px;
+}
+.followers{
+    margin-top: 20px;
+    margin-left: 20px;
+    font-size: 15px;
+    text-align: left;
 }
 .sidebar {
     font-size: 1rem;
