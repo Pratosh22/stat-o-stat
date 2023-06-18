@@ -71,7 +71,7 @@ function App() {
           <SideBar token={token} handleMenuClick={handleMenuClick} user={getUserId} />
           <div className="content">
             {selectedComponent === "home" ? (
-              <Home token={token} user={getUserId}/>
+              <Home token={token} user={getUserId} id={userid}/>
             ) : selectedComponent === "stats" ? (
               <Stats token={token} />
             ) : (

@@ -9,6 +9,7 @@ function PlayList({ token, id }) {
   const [visiblePlaylists, setVisiblePlaylists] = useState([]);
   const [showMore, setShowMore] = useState(false);
   const [showLess, setShowLess] = useState(false);
+  const [hoveredPlaylist, setHoveredPlaylist] = useState(null);
 
   useEffect(() => {
     setLoader(true);
@@ -53,15 +54,22 @@ function PlayList({ token, id }) {
   };
 
   const handleShowLess = () => {
-    setVisiblePlaylists(
-      playlists.slice(0, 10).filter((item) => item.tracks.total > 0)
-    );
+    const filteredPlaylists = playlists.filter((item) => item.tracks.total > 0);
+    setVisiblePlaylists(filteredPlaylists.slice(0, 10));
     setShowMore(true);
     setShowLess(false);
   };
 
+  const handlePlaylistHover = (playlistId) => {
+    setHoveredPlaylist(playlistId);
+  };
+
+  const handlePlaylistHoverLeave = () => {
+    setHoveredPlaylist(null);
+  };
+
   return (
-    <div>
+    <>
       {loader && <Spinner />}
       <hr style={{ width: "100%" }} />
       <div className="playlist__title">
@@ -69,13 +77,13 @@ function PlayList({ token, id }) {
         <div className="show__button">
           {showMore && (
             <button onClick={handleShowMore} className="show-more-button">
-              <i class="fa-solid fa-plus"></i>
+              <i className="fa-solid fa-plus"></i>
               Show More
             </button>
           )}
           {showLess && (
             <button onClick={handleShowLess} className="show-less-button">
-              <i class="fa-solid fa-minus"></i>
+              <i className="fa-solid fa-minus"></i>
               Show Less
             </button>
           )}
@@ -84,18 +92,30 @@ function PlayList({ token, id }) {
       <div className="playlist">
         {Array.isArray(visiblePlaylists) && visiblePlaylists.length > 0 ? (
           visiblePlaylists.map((item) => (
-            <div className="playlist__item card" key={item.id}>
+            <div
+              className={`playlist__item card ${
+                hoveredPlaylist === item.id ? "hovered" : ""
+              }`}
+              key={item.id}
+              onMouseEnter={() => handlePlaylistHover(item.id)}
+              onMouseLeave={handlePlaylistHoverLeave}
+            >
               {item.images && item.images.length > 0 && (
                 <img src={item.images[0].url} alt="playlist" />
               )}
               <h5>{item.name}</h5>
+              {hoveredPlaylist === item.id && (
+                <div className="edit-icon">
+                  <i className="fa-solid fa-lg fa-pen-to-square"></i>
+                </div>
+              )}
             </div>
           ))
         ) : (
           <p>No playlists available.</p>
         )}
       </div>
-    </div>
+    </>
   );
 }
 

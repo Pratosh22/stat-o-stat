@@ -18,12 +18,12 @@ function GenreStat({ token, state }) {
   useEffect(() => {
     const fetchData = async () => {
       setLoader(true);
-      const topArtists = await getTopArtists(token, 10, "long_term");
+      const topArtists = await getTopArtists(token, 20, "long_term");
       setTopArtists(topArtists);
       const genreCount = getGenreCount(topArtists);
       //take only top 5
-      const labels = Object.keys(genreCount).slice(0, 10);
-      const data = Object.values(genreCount).slice(0, 10);
+      const labels = Object.keys(genreCount).slice(0, 20);
+      const data = Object.values(genreCount).slice(0, 20);
 
       const backgroundColors = generateBackgroundColors(labels.length);
       const updatedChartData = {
@@ -88,16 +88,6 @@ function GenreStat({ token, state }) {
         },
         padding: 200,
       },
-      datalabels: {
-        color: "#fff",
-        anchor: "center",
-        align: "top",
-        formatter: Math.round,
-        font: {
-          weight: "bold",
-          size: 16,
-        },
-      },
     },
   };
 
@@ -132,7 +122,7 @@ function GenreStat({ token, state }) {
               })}
           </tbody>
         </table>
-        <h4 className="info" style={{ marginTop: "30px" }}>*Top 10 data is shown</h4>
+        <h4 className="info" style={{ marginTop: "30px" }}>*Top 20 all-time data based on Artists</h4>
       </div>
     </div>
   );

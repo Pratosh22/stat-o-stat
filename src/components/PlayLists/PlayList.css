@@ -3,6 +3,10 @@
   flex-wrap: wrap;
   margin-left: 270px;
 }
+.playlist__item h5{
+  margin-top:10px;
+  font-weight: 600;
+}
 .playlist__title {
   display: flex;
   justify-content: space-between;
@@ -32,3 +36,26 @@
   margin-right:80px;
 }
 
+.playlist__item {
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+.playlist__item:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.edit-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.playlist__item:hover .edit-icon {
+  opacity: 1;
+}

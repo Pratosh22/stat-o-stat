@@ -13,3 +13,20 @@
 .refresh:hover{
   cursor: pointer;
 }
+.create__playlist__button{
+margin-top: 70px;
+display: flex;
+margin-left: 270px;
+  align-self: flex-start;
+  background-color: #1db954;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.create__playlist__button:hover{
+  opacity: 0.8;
+}
+
