@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Smallcard.css";
 
-function SongCard({ songs,state }) {
+function SongCard({ songs, state }) {
   const [activeSong, setActiveSong] = useState(null);
   const [audio, setAudio] = useState(null);
 
@@ -35,6 +35,8 @@ function SongCard({ songs,state }) {
     <div className={state ? "recom" : "songStat"}>
       {songs.map((song) => {
         const isSongActive = activeSong === song.id;
+        const imageUrl =
+          song.album.images.length > 0 ? song.album.images[0].url : "https://www.google.com/url?sa=i&url=https%3A%2F%2Fcityofmebanenc.gov%2Fparks-facilities-trails%2Fplaceholder-image%2F&psig=AOvVaw3zpYvrcMVPKG_p9PV3Neni&ust=1687082480240000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCPjw9pCGyv8CFQAAAAAdAAAAABAE";
 
         return (
           <div className="card" key={song.id}>
@@ -51,14 +53,7 @@ function SongCard({ songs,state }) {
                 ></i>
               )}
             </div>
-            <img
-              src={
-                song.album.images[0].url
-                  ? song.album.images[0].url
-                  : "https://www.google.com/url?sa=i&url=https%3A%2F%2Fcityofmebanenc.gov%2Fparks-facilities-trails%2Fplaceholder-image%2F&psig=AOvVaw3zpYvrcMVPKG_p9PV3Neni&ust=1687082480240000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCPjw9pCGyv8CFQAAAAAdAAAAABAE"
-              }
-              alt="album-cover"
-            />
+            <img src={imageUrl} alt="album-cover" />
             <div className="title">{song.name}</div>
           </div>
         );
