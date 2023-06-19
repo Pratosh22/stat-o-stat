@@ -64,7 +64,7 @@ export const getRecommendations = async (token, artists, songs) => {
           Authorization: `Bearer ${token}`,
         },
         params: {
-          limit: 10,
+          limit: 50,
           seed_artists: artistIds.join(","),
           seed_tracks: trackIds.join(","),
         },
@@ -165,7 +165,7 @@ export const getTracks = async (token, playlist_id) => {
         Authorization: `Bearer ${token}`,
       },
       params: {
-        limit: 20,
+        limit: 50,
         offset: 0,
       },
     });

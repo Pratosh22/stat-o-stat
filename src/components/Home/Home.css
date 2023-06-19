@@ -1,22 +1,21 @@
-
 .home__title {
-    display: flex;
-    margin-left:270px; 
-    justify-content: space-between;
-    width: 70%;
-    font-size: 2.0rem;
-    font-weight: 600;
-    color: #1DB954;
-    margin-bottom: 20px;
-  }
+  display: flex;
+  margin-left: 270px;
+  justify-content: space-between;
+  width: 70%;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1db954;
+  margin-bottom: 20px;
+}
 
-.refresh:hover{
+.refresh:hover {
   cursor: pointer;
 }
-.create__playlist__button{
-margin-top: 70px;
-display: flex;
-margin-left: 270px;
+.create__playlist__button {
+  margin-top: 70px;
+  display: flex;
+  margin-left: 270px;
   align-self: flex-start;
   background-color: #1db954;
   color: #fff;
@@ -26,7 +25,6 @@ margin-left: 270px;
   border-radius: 4px;
   cursor: pointer;
 }
-.create__playlist__button:hover{
+.create__playlist__button:hover {
   opacity: 0.8;
 }
-
