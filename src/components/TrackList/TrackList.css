@@ -1,0 +1,104 @@
+.tracklist {
+  color: #f2f2f2;
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.tracklist-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 270px;
+}
+tr {
+  width: 20px !important;
+}
+.tracklist th,
+.tracklist td {
+  padding: 8px;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+th {
+  color: #1db954;
+}
+.tracklist thead {
+  font-weight: bold;
+}
+
+.track__image {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  margin-right: 8px;
+}
+
+.track__info {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.track__name {
+  font-weight: bold;
+}
+
+/* Additional styles for table headers */
+.tracklist th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.tracklist th:first-child {
+  left: 0;
+  z-index: 2;
+}
+
+.tracklist th:last-child {
+  position: sticky;
+  right: 0;
+  z-index: 2;
+}
+.track-info {
+  display: flex;
+  align-items: center;
+  margin-right: 40px;
+}
+.tracklist th:first-child {
+  width: 50px;
+}
+.tracklist th:nth-child(3) {
+  padding-left: 80px;
+}
+.tracklist td:nth-child(3) {
+  padding-left: 80px;
+}
+
+th:nth-child(5) {
+  text-align: center;
+}
+.tracklist td:nth-child(5) {
+  text-align: center;
+}
+.edit {
+  width: 180px;
+  height: 40px;
+  justify-self: flex-end;
+  margin-bottom: 50px;
+  background-color: #1db954;
+  color: #fff;
+  border: none;
+  padding: 0px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  margin-right: 130px;
+  cursor: pointer;
+}
+.edit__div{
+    display: flex;
+    justify-content: flex-end;
+}

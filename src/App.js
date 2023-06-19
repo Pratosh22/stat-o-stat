@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from "react";
 import "./App.css";
 import logo from "./logo.png";
+import mockup from './mockup.png'
 import temp from "./temp.webp";
 import SideBar from "./components/SideBar/SideBar";
 import Home from "./components/Home/Home";
@@ -90,7 +91,7 @@ function App() {
               Discover new songs and playlists made <span> for you.</span>
             </h4>
           </div>
-          <img src={temp} alt="" style={{ width: "50%", paddingTop: "40px" }} />
+          <img src={mockup} alt="" style={{ width: "60%" }} />
         </div>
       )}
     </div>

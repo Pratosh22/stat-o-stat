@@ -3,10 +3,12 @@
   flex-wrap: wrap;
   margin-left: 270px;
 }
-.playlist__item h5{
-  margin-top:10px;
+
+.playlist__item h5 {
+  margin-top: 10px;
   font-weight: 600;
 }
+
 .playlist__title {
   display: flex;
   justify-content: space-between;
@@ -16,6 +18,9 @@
   color: #1db954;
   margin-bottom: 20px;
   margin-top: 20px;
+}
+.show-less-button{
+  margin-left: 30px;
 }
 .show-more-button,
 .show-less-button {
@@ -32,8 +37,9 @@
 .show-less-button:hover {
   opacity: 0.8;
 }
-.show__button{
-  margin-right:80px;
+
+.show__button {
+  margin-right: 80px;
 }
 
 .playlist__item {
@@ -46,16 +52,37 @@
   background-color: rgba(0, 0, 0, 0.9);
 }
 
-.edit-icon {
+.edit-icons {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1;
+  display: flex;
+  align-items: center;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
-.playlist__item:hover .edit-icon {
+.edit-icons > div {
+  margin-left: 8px;
+}
+
+.playlist__item:hover .edit-icons {
   opacity: 1;
+}
+
+.back {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 290px;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  background-color: #1db954;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 80px;
 }
