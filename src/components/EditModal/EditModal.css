@@ -1,0 +1,62 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    position: relative;
+    width: 600px;
+    height: 400px;
+    background-color: #121212;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  }
+  
+  form {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  form div {
+    margin-bottom: 50px; /* Add a small gap between form fields */
+  }
+  
+  label {
+    font-weight: bold; /* Add font weight to the labels for better visibility */
+  }
+  form div label{
+    margin-right: 10px;
+  }
+  input[type="submit"] {
+    background-color: #1db954;
+    color: #fff;
+    border: none;
+    width: 200px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  input[type="submit"]:hover {
+    opacity: 0.8;
+  }
+  
+  .submit__div{
+    display: flex;
+    justify-content: center;
+  }
+  .close:hover{
+    cursor: pointer;
+  }

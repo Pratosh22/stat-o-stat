@@ -24,6 +24,7 @@ export const getTopArtists = async (token, limit, time) => {
     if (error.response && error.response.status === 401) {
       // Token expired or invalid
       localStorage.removeItem("token"); // Delete the token from local storage
+      window.location.reload();
     }
   }
 };
@@ -46,6 +47,7 @@ export const getTopSongs = async (token, limit, time) => {
     if (error.response && error.response.status === 401) {
       // Token expired or invalid
       localStorage.removeItem("token"); // Delete the token from local storage
+      window.location.reload();
     }
   }
 };
@@ -75,6 +77,7 @@ export const getRecommendations = async (token, artists, songs) => {
     if (error.response && error.response.status === 401) {
       // Token expired or invalid
       localStorage.removeItem("token"); // Delete the token from local storage
+      window.location.reload();
     }
   }
 };
@@ -99,6 +102,7 @@ export const getPlaylist = async (token, id) => {
     if (error.response && error.response.status === 401) {
       // Token expired or invalid
       localStorage.removeItem("token"); // Delete the token from local storage
+      window.location.reload();
     }
   }
 };
@@ -125,6 +129,7 @@ export const createPlaylist = async (token, id, name, description) => {
     if (error.response && error.response.status === 401) {
       // Token expired or invalid
       localStorage.removeItem("token"); // Delete the token from local storage
+      window.location.reload();
     }
   }
 };
@@ -148,6 +153,7 @@ export const addTracksToPlaylist = async (token, playlistId, uris) => {
     if (error.response && error.response.status === 401) {
       // Token expired or invalid
       localStorage.removeItem("token"); // Delete the token from local storage
+      window.location.reload();
     }
   }
 };
@@ -169,6 +175,7 @@ export const getTracks = async (token, playlist_id) => {
     if (error.response && error.response.status === 401) {
       // Token expired or invalid
       localStorage.removeItem("token"); // Delete the token from local storage
+      window.location.reload();
     }
   }
 }
@@ -186,6 +193,31 @@ export const unfollowPlaylist = async (token, playlist_id) => {
       if (error.response && error.response.status === 401) {
         // Token expired or invalid
         localStorage.removeItem("token"); // Delete the token from local storage
+        window.location.reload();
       }
    }
+}
+
+export const editPlaylist = async (token, playlist_id, name, description) => {
+  try{
+    const response = await axiosInstance.put(`${API_BASE_URL}/playlists/${playlist_id}`, {
+      name: name,
+      description: description,
+    }, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  }catch(error){
+    if (error.response && error.response.status === 401) {
+      alert("Error editing playlist,Try again later.");
+      // Token expired or invalid
+      localStorage.removeItem("token"); // Delete the token from local storage
+      window.location.reload();
+    }
+    if(error.response && error.response.status === 403){
+      alert("You don't have permission to edit this playlist.")
+    }
+  }
 }

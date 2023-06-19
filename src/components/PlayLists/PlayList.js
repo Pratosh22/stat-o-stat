@@ -177,7 +177,7 @@ function PlayList({ token, id }) {
           <button onClick={handleBackButtonClick} className="back">
             <i className="fa-solid fa-arrow-left"></i>Back
           </button>
-          <TrackList tracks={tracks} />
+          <TrackList tracks={tracks} id={selectedPlaylist}/>
         </div>
       )}
     </>
