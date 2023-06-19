@@ -8,6 +8,7 @@ function SongStats({ token }) {
   const [active, setActive] = useState("4weeks");
   const [timerange, setTimerange] = useState("short_term");
   const [selected, setSelected] = useState("artists");
+  const [hasData, setHasData] = useState(true);
 
   useEffect(() => {
     if (active === "allTime") {
@@ -27,10 +28,14 @@ function SongStats({ token }) {
     setSelected(option);
   };
 
+  useEffect(() => {
+    setHasData(true);
+  }, [selected]);
+
   return (
     <div className="stats">
       <hr style={{ width: "100%" }} />
-      
+
       {selected !== "genres" && (
         <div className="header">
           <h3
@@ -53,7 +58,7 @@ function SongStats({ token }) {
           </h3>
         </div>
       )}
-      
+
       <div className="stats-container">
         <div className="stat__title">
           <h2
@@ -82,14 +87,21 @@ function SongStats({ token }) {
           </h2>
         </div>
         <div className="display__artists">
-          {selected === "artists" ? (
-            <ArtistCard token={token} state={timerange}  />
-          ) : selected === "genres" ? (
-            <GenreStat token={token}  />
-          ) : (
-            <SongStat token={token} state={timerange} />
+          {selected === "artists" && (
+            <ArtistCard token={token} state={timerange} setHasData={setHasData} />
+          )}
+          {selected === "genres" && (
+            <GenreStat token={token} setHasData={setHasData} />
+          )}
+          {selected === "tracks" && (
+            <SongStat token={token} state={timerange} setHasData={setHasData} />
           )}
         </div>
+        {!hasData && selected !== "genres" && (
+          <div className="no-data-message">
+            {selected === "artists" ? "Artists" : "Songs"}: Not enough data to render.
+          </div>
+        )}
       </div>
     </div>
   );

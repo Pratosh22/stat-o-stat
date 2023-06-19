@@ -42,6 +42,7 @@ export const getTopSongs = async (token, limit, time) => {
       },
     });
     return data.items;
+
   } catch (error) {
     alert("Error fetching top songs:", error);
     if (error.response && error.response.status === 401) {

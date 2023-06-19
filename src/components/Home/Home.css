@@ -28,3 +28,10 @@
 .create__playlist__button:hover {
   opacity: 0.8;
 }
+.no-data-message{
+  margin-left: 270px;
+  margin-top: 50px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+}
