@@ -27,7 +27,7 @@ function SideBar(props) {
   };
 
   const followers = user.followers ? user.followers.total : null;
-  const photo = user.images ? user.images[0].url : null;
+  const photo = user.images ? user.images[0].url : 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.m.wikipedia.org%2Fwiki%2FFile%3APlaceholder_view_vector.svg&psig=AOvVaw1hLHiYGCEIt6mMw_jiiHGk&ust=1687277149159000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCPDUuKnbz_8CFQAAAAAdAAAAABAJ';
  
 
   
