@@ -88,6 +88,9 @@ export const getPlaylist = async (token, id) => {
           Authorization: `Bearer ${token}`,
           public: false,
         },
+        params: {
+          limit: 50,
+        },
       }
     );
     return data;
@@ -148,3 +151,41 @@ export const addTracksToPlaylist = async (token, playlistId, uris) => {
     }
   }
 };
+
+export const getTracks = async (token, playlist_id) => {
+  try {
+    const { data } = await axiosInstance.get(`${API_BASE_URL}/playlists/${playlist_id}/tracks`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      params: {
+        limit: 20,
+        offset: 0,
+      },
+    });
+    return data.items;
+  } catch (error) {
+    alert("Error fetching tracks:", error);
+    if (error.response && error.response.status === 401) {
+      // Token expired or invalid
+      localStorage.removeItem("token"); // Delete the token from local storage
+    }
+  }
+}
+
+export const unfollowPlaylist = async (token, playlist_id) => {
+   try{
+      const response = await axiosInstance.delete(`${API_BASE_URL}/playlists/${playlist_id}/followers`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        return response.data;
+   }catch(error){
+      alert("Error unfollowing playlist:", error);
+      if (error.response && error.response.status === 401) {
+        // Token expired or invalid
+        localStorage.removeItem("token"); // Delete the token from local storage
+      }
+   }
+}
