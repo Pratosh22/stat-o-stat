@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import placeholder_img from '../../placeholder-image.png';
 import "./Sidebar.css";
 
 function SideBar(props) {
@@ -27,10 +28,7 @@ function SideBar(props) {
   };
 
   const followers = user.followers ? user.followers.total : null;
-  const photo = user.images ? user.images[0].url : 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.m.wikipedia.org%2Fwiki%2FFile%3APlaceholder_view_vector.svg&psig=AOvVaw1hLHiYGCEIt6mMw_jiiHGk&ust=1687277149159000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCPDUuKnbz_8CFQAAAAAdAAAAABAJ';
  
-
-  
   //send userid to app.js
 
   return (
@@ -41,7 +39,11 @@ function SideBar(props) {
         </div>
         <div className="sidebar__profile">
           <img
-            src={photo}
+            src={
+              user.images && user.images.length > 0
+                ? user.images[0].url
+                : placeholder_img
+            }
             alt="profile"
             style={{ borderRadius: "50%", width: "100px" }}
           />
