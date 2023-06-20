@@ -24,7 +24,12 @@ function Home({ token, id }) {
         const topSongs = await getTopSongs(token, 3, "short_term");
         setArtists(topArtists);
         setSongs(topSongs);
-        handleRecommendations(topArtists, topSongs);
+        if (topArtists.length === 0 || topSongs.length === 0) {
+          setLoader(false);
+          setSongCard(false);
+        } else {
+          handleRecommendations(topArtists, topSongs);
+        }
       } catch (error) {
         // Handle error
         console.log(error);
@@ -81,9 +86,15 @@ function Home({ token, id }) {
               <i className="fa-solid fa-arrows-rotate" onClick={reload}></i>
             </div>
           </div>
-          <div className="songs__list">
-            <SongCard songs={recom} state={songCard} />
-          </div>
+          {songCard ? (
+            <div className="songs__list">
+              <SongCard songs={recom} state={songCard} />
+            </div>
+          ) : (
+            <div className="no-data-message">
+              Not enough data to render recommendations.
+            </div>
+          )}
           <div className="create__playlist">
             <button
               className="create__playlist__button"

@@ -21,6 +21,12 @@ function GenreStat({ token, state }) {
       const topArtists = await getTopArtists(token, 20, "long_term");
       setTopArtists(topArtists);
       const genreCount = getGenreCount(topArtists);
+
+      if (Object.keys(genreCount).length === 0) {
+        setLoader(false);
+        return; // No genre data, render "Not enough data to render" message
+      }
+
       //take only top 5
       const labels = Object.keys(genreCount).slice(0, 20);
       const data = Object.values(genreCount).slice(0, 20);
@@ -93,37 +99,45 @@ function GenreStat({ token, state }) {
 
   return (
     <div className="genre">
-     {loader && <Spinner />}
-      <div className="main__chart" style={{ padding: "20px", width: "50%" }}>
-        {chartDataUpdate && <Doughnut data={chartData} options={options} />}
-        <h4 className="info">*Data is based on All-Time streaming</h4>
-      </div>
-      <div className="genre__list">
-        <table className="genre__table">
-          <thead>
-            <tr>
-              <th>Genre</th>
-              <th>Count</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Object.keys(getGenreCount(artists))
-              .slice(0, 10)
-              .map((genre) => {
-                const count = getGenreCount(artists)[genre];
-                const totalGenres = Object.keys(getGenreCount(artists)).length;
-                const percentage = ((count / totalGenres) * 100).toFixed(2);
-                return (
-                  <tr key={genre}>
-                    <td>{genre.toUpperCase()}</td>
-                    <td>{percentage}%</td>
-                  </tr>
-                );
-              })}
-          </tbody>
-        </table>
-        <h4 className="info" style={{ marginTop: "30px" }}>*Top 20 all-time data based on Artists</h4>
-      </div>
+      {loader && <Spinner />}
+      {Object.keys(chartData).length === 0 && !loader ? (
+        <div className="no-data-message">Not enough data to render</div>
+      ) : (
+        <>
+          <div className="main__chart" style={{ padding: "20px", width: "50%" }}>
+            {chartDataUpdate && <Doughnut data={chartData} options={options} />}
+            <h4 className="info">*Data is based on All-Time streaming</h4>
+          </div>
+          <div className="genre__list">
+            <table className="genre__table">
+              <thead>
+                <tr>
+                  <th>Genre</th>
+                  <th>Count</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.keys(getGenreCount(artists))
+                  .slice(0, 10)
+                  .map((genre) => {
+                    const count = getGenreCount(artists)[genre];
+                    const totalGenres = Object.keys(getGenreCount(artists)).length;
+                    const percentage = ((count / totalGenres) * 100).toFixed(2);
+                    return (
+                      <tr key={genre}>
+                        <td>{genre.toUpperCase()}</td>
+                        <td>{percentage}%</td>
+                      </tr>
+                    );
+                  })}
+              </tbody>
+            </table>
+            <h4 className="info" style={{ marginTop: "30px" }}>
+              *Top 20 all-time data based on Artists
+            </h4>
+          </div>
+        </>
+      )}
     </div>
   );
 }

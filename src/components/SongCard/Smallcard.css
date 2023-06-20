@@ -77,3 +77,10 @@
 .fa-pause:hover{
   transform: scale(1.1);
 }
+
+.home__buttons{
+	display: flex;	
+	padding-top: 10px;
+	justify-content: flex-end;
+	margin-right: 100px;
+}
