@@ -5,6 +5,7 @@ import "./Sidebar.css";
 function SideBar(props) {
   const [user, setUser] = React.useState([]);
   const [selectedComponent, setSelectedComponent] = React.useState("home");
+  const [menuVisible, setMenuVisible] = React.useState(false);
 
   React.useEffect(() => {
     const getUser = async () => {
@@ -17,21 +18,20 @@ function SideBar(props) {
       props.user(data.id);
     };
     getUser();
-    
-  }, [props.token,props.user]);
-  
+  }, [props.token, props.user]);
 
   const handleMenuClick = (component) => {
     setSelectedComponent(component);
+    setMenuVisible(false);
     props.handleMenuClick(component);
+  };
+
+  const toggleMenu = () => {
+    setMenuVisible(!menuVisible);
   };
 
   const followers = user.followers ? user.followers.total : null;
   const photo = user.images ? user.images[0].url : null;
- 
-
-  
-  //send userid to app.js
 
   return (
     <div>
@@ -48,8 +48,11 @@ function SideBar(props) {
           <h3>{user.display_name}</h3>
           <h5 className="followers">Followers: {followers}</h5>
         </div>
-        <hr></hr>
-        <div className="sidebar__menu">
+        <hr />
+        <div className="sidebar__menu-toggle" onClick={toggleMenu}>
+          <i className="fa-solid fa-bars"></i>
+        </div>
+        <div className={`sidebar__menu ${menuVisible ? "show-menu" : ""}`}>
           <ul>
             <li
               className={selectedComponent === "home" ? "active" : ""}
