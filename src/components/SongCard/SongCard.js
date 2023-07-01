@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./Smallcard.css";
 
-function SongCard({ songs, state }) {
+function SongCard({ songs, state,sidebar }) {
   const [activeSong, setActiveSong] = useState(null);
   const [audio, setAudio] = useState(null);
   const [displayedSongs, setDisplayedSongs] = useState(10);
   const showLessButtonVisible = displayedSongs > 10;
-
+  const visibility=sidebar;
   useEffect(() => {
     return () => {
       if (audio) {
@@ -43,7 +43,7 @@ function SongCard({ songs, state }) {
 
   return (
     <div>
-      <div className="home__buttons">
+      <div className={visibility ? "home__buttons" : "home__buttons nsb"}>
         {songs.length > displayedSongs && (
           <button className="show-more-button" onClick={handleShowMore}>Show More</button>
         )}
@@ -52,7 +52,7 @@ function SongCard({ songs, state }) {
         )}
       </div>
 
-      <div className={state ? "recom" : "songStat"}>
+      <div className={`${state ? "recom" : "songStat"} ${visibility ? "" : "nr" }`}>
         {songs.slice(0, displayedSongs).map((song) => {
           const isSongActive = activeSong === song.id;
           const imageUrl =
@@ -60,7 +60,7 @@ function SongCard({ songs, state }) {
               ? song.album.images[0].url
               : "https://www.google.com/url?sa=i&url=https%3A%2F%2Fcityofmebanenc.gov%2Fparks-facilities-trails%2Fplaceholder-image%2F&psig=AOvVaw3zpYvrcMVPKG_p9PV3Neni&ust=1687082480240000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCPjw9pCGyv8CFQAAAAAdAAAAABAE";
           return (
-            <div className="card" key={song.id}>
+            <div className={visibility ? 'card' : 'card'} key={song.id}>
               <div className="overlayer">
                 {isSongActive ? (
                   <i

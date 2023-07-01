@@ -5,7 +5,7 @@ import Spinner from "../Spinner/Spinner";
 import "./Home.css";
 import { createPlaylist, addTracksToPlaylist } from "../../api";
 
-function Home({ token, id }) {
+function Home({ token, id,sidebar }) {
   const [loader, setLoader] = useState(false);
   const [artists, setArtists] = useState([]);
   const [songs, setSongs] = useState([]);
@@ -15,7 +15,7 @@ function Home({ token, id }) {
   const [uris, setUris] = useState([]);
   const user_id = id;
   const auth_token = token;
-
+  const visibility=sidebar;
   useEffect(() => {
     setLoader(true);
     const fetchData = async () => {
@@ -80,15 +80,15 @@ function Home({ token, id }) {
         <Spinner />
       ) : (
         <>
-          <div className="home__title">
-            <div className="title">Songs you may like...</div>
+          <div className={visibility ? 'home__title' : 'home__title nst'}>
+            <div className={visibility ? 'title' : 'title nt'}>Songs you may like...</div>
             <div className="refresh">
               <i className="fa-solid fa-arrows-rotate" onClick={reload}></i>
             </div>
           </div>
           {songCard ? (
             <div className="songs__list">
-              <SongCard songs={recom} state={songCard} />
+              <SongCard songs={recom} state={songCard} sidebar={visibility} />
             </div>
           ) : (
             <div className="no-data-message">
@@ -97,7 +97,7 @@ function Home({ token, id }) {
           )}
           <div className="create__playlist">
             <button
-              className="create__playlist__button"
+              className={visibility ? 'create__playlist__button' : 'create__playlist__button np'}
               onClick={handlePlaylistCreation}
               disabled={loader}
             >

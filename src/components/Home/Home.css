@@ -35,3 +35,18 @@
   font-weight: 600;
   color: white;
 }
+
+.nst{
+  margin-left:0px;
+  width:100%;
+  font-size: 1.4rem;
+  justify-content: space-around;
+}
+.nt{
+  margin-left: 10px;
+}
+
+.np{
+  margin-left:50px;
+  margin-bottom: 20px;
+}
