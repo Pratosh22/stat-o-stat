@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import "./App.css";
 import logo from "./logo.png";
 import mockup from './mockup.png';
 import SideBar from "./components/SideBar/SideBar";
-import Home from "./components/Home/Home";
-import Stats from "./components/Stats/Stats";
-import Playlists from "./components/PlayLists/PlayList";
+
+const Home = lazy(() => import("./components/Home/Home"));
+const Stats = lazy(() => import("./components/Stats/Stats"));
+const Playlists = lazy(() => import("./components/PlayLists/PlayList"));
 
 function App() {
   const CLIENT_ID = "cec7b93ed47b441eb8056ba8ffc7be20";
@@ -82,15 +83,17 @@ function App() {
       </header>
       {token ? (
         <div className="main">
-          <SideBar token={token} handleMenuClick={handleMenuClick} user={getUserId} />
+          <SideBar token={token} handleMenuClick={handleMenuClick} user={getUserId} visible={displaySidebar}/>
           <div className="content">
-            {selectedComponent === "home" ? (
-              <Home token={token} user={getUserId} id={userid} sidebar={displaySidebar}/>
-            ) : selectedComponent === "stats" ? (
-              <Stats token={token} />
-            ) : (
-              <Playlists token={token} id={userid}/>
-            )}
+            <Suspense fallback={<div>Loading...</div>}>
+              {selectedComponent === "home" ? (
+                <Home token={token} user={getUserId} id={userid} sidebar={displaySidebar}/>
+              ) : selectedComponent === "stats" ? (
+                <Stats token={token} />
+              ) : (
+                <Playlists token={token} id={userid}/>
+              )}
+            </Suspense>
           </div>
         </div>
       ) : (

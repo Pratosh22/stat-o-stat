@@ -1,9 +1,9 @@
 import React from "react";
 import axios from "axios";
-import placeholder_img from "../../placeholder-image.png";
+import placeholder_img from '../../placeholder-image.png';
 import "./Sidebar.css";
 
-function SideBar(props) {
+function HamMenu(props) {
   const [user, setUser] = React.useState([]);
   const [selectedComponent, setSelectedComponent] = React.useState("home");
   const [menuVisible, setMenuVisible] = React.useState(false);
@@ -35,22 +35,19 @@ function SideBar(props) {
 
   const photo = user.images ? user.images[0].url : null;
 
-  const visibility = props.visible;
 
-  console.log(visibility);
   return (
     <div>
-      <div className="sidebar__menu-toggle" onClick={toggleMenu}>
-          <i className="fa-solid fa-bars"></i>
-      </div>
-      <div className={visibility ? "sidebar" : "mobile-menu"}>
-        <div className="sidebar__title">
+      <div className="hamenu">
+        <div className="hamenu__title">
           <h1>Welcome</h1>
         </div>
-        <div className="sidebar__profile">
+        <div className="hamenu__profile">
           <img
             src={
-              user.images && user.images.length > 0 ? photo : placeholder_img
+              user.images && user.images.length > 0
+                ? photo
+                : placeholder_img
             }
             alt="profile"
             style={{ borderRadius: "50%", width: "100px" }}
@@ -59,6 +56,9 @@ function SideBar(props) {
           <h5 className="followers">Followers: {followers}</h5>
         </div>
         <hr />
+        <div className="hamenu-toggle" onClick={toggleMenu}>
+          <i className="fa-solid fa-bars"></i>
+        </div>
         <div className={`sidebar__menu ${menuVisible ? "show-menu" : ""}`}>
           <ul>
             <li
@@ -86,4 +86,4 @@ function SideBar(props) {
   );
 }
 
-export default SideBar;
+export default HamMenu;
