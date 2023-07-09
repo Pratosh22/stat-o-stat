@@ -1,7 +1,7 @@
 import React, { useState, useEffect, lazy, Suspense } from "react";
 import "./App.css";
 import logo from "./logo.png";
-import mockup from './mockup.png';
+import mockup from "./mockup.png";
 import SideBar from "./components/SideBar/SideBar";
 
 const Home = lazy(() => import("./components/Home/Home"));
@@ -13,16 +13,24 @@ function App() {
   const REDIRECT_URI = "http://localhost:3000";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize/";
   const RESPONSE_TYPE = "token";
-  const scopes = ["user-top-read","playlist-read-private","playlist-read-collaborative","playlist-modify-public","playlist-modify-private"];
+  const scopes = [
+    "user-top-read",
+    "playlist-read-private",
+    "playlist-read-collaborative",
+    "playlist-modify-public",
+    "playlist-modify-private",
+  ];
   const [token, setToken] = useState("");
   const [selectedComponent, setSelectedComponent] = useState("home");
-  const [userid, setUserId] = useState('');
-  const [displaySidebar, setDisplaySidebar] = useState(window.innerWidth >= 800);
+  const [userid, setUserId] = useState("");
+  const [displaySidebar, setDisplaySidebar] = useState(
+    window.innerWidth >= 800
+  );
 
   const handleMenuClick = (component) => {
     setSelectedComponent(component);
   };
-  
+
   useEffect(() => {
     const handleResize = () => {
       setDisplaySidebar(window.innerWidth >= 800);
@@ -38,33 +46,33 @@ function App() {
   useEffect(() => {
     const hash = window.location.hash;
     let receivedToken = window.localStorage.getItem("token");
-  
+
     if (!receivedToken && hash) {
       receivedToken = hash
         .substring(1)
         .split("&")
         .find((elem) => elem.startsWith("access_token"))
         .split("=")[1];
-  
+
       window.location.hash = "";
       window.localStorage.setItem("token", receivedToken);
     }
-    
+
     setToken(receivedToken);
   }, []);
-  
+
   const logout = () => {
     setToken("");
     window.localStorage.removeItem("token");
-  };  
-  
+  };
+
   const getUserId = (id) => {
     setUserId(id);
-  }
+  };
 
   return (
     <div className="App">
-      <header className={displaySidebar ? 'App-header' : 'App-header nsd'}>
+      <header className={displaySidebar ? "App-header" : "App-header nsd"}>
         <img src={logo} alt="logo" style={{ width: "120px" }} />
         {!token ? (
           <button type="button" className="login__button">
@@ -75,23 +83,35 @@ function App() {
               Login
             </a>
           </button>
-        ) : (
+        ) : displaySidebar ? (
           <button onClick={logout} className="logout">
             Logout
           </button>
+        ) : (
+          <div></div>
         )}
       </header>
       {token ? (
         <div className="main">
-          <SideBar token={token} handleMenuClick={handleMenuClick} user={getUserId} visible={displaySidebar}/>
+          <SideBar
+            token={token}
+            handleMenuClick={handleMenuClick}
+            user={getUserId}
+            visible={displaySidebar}
+          />
           <div className="content">
             <Suspense fallback={<div>Loading...</div>}>
               {selectedComponent === "home" ? (
-                <Home token={token} user={getUserId} id={userid} sidebar={displaySidebar}/>
+                <Home
+                  token={token}
+                  user={getUserId}
+                  id={userid}
+                  sidebar={displaySidebar}
+                />
               ) : selectedComponent === "stats" ? (
-                <Stats token={token} />
+                <Stats token={token} sidebar={displaySidebar} />
               ) : (
-                <Playlists token={token} id={userid}/>
+                <Playlists token={token} id={userid}  sidebar={displaySidebar}/>
               )}
             </Suspense>
           </div>

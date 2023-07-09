@@ -4,12 +4,12 @@ import ArtistCard from "../ArtistCard/ArtistCard";
 import GenreStat from "./GenreStat/GenreStat";
 import SongStat from "./SongStat/SongStat";
 
-function SongStats({ token }) {
+function SongStats({ token,sidebar }) {
   const [active, setActive] = useState("4weeks");
   const [timerange, setTimerange] = useState("short_term");
   const [selected, setSelected] = useState("artists");
   const [hasData, setHasData] = useState(true);
-
+  let visibility=sidebar;
   useEffect(() => {
     if (active === "allTime") {
       setTimerange("long_term");
@@ -31,13 +31,13 @@ function SongStats({ token }) {
   useEffect(() => {
     setHasData(true);
   }, [selected]);
-
+  console.log(visibility)
   return (
     <div className="stats">
       <hr style={{ width: "100%" }} />
 
       {selected !== "genres" && (
-        <div className="header">
+        <div className={visibility ? 'header' : 'header sidebar__header'}>
           <h3
             className={active === "allTime" ? "active" : ""}
             onClick={() => handleClick("allTime")}
@@ -59,8 +59,8 @@ function SongStats({ token }) {
         </div>
       )}
 
-      <div className="stats-container">
-        <div className="stat__title">
+      <div className={visibility ? 'stats-container' : 'stats-container sidebar__stats-container'}>
+        <div className={visibility ? 'stat__title' : 'stat__title reduced_size'}>
           <h2
             className={selected === "tracks" ? "active" : ""}
             onClick={() => {
@@ -88,13 +88,13 @@ function SongStats({ token }) {
         </div>
         <div className="display__artists">
           {selected === "artists" && (
-            <ArtistCard token={token} state={timerange} setHasData={setHasData} />
+            <ArtistCard token={token} state={timerange} setHasData={setHasData} responsive={visibility}/>
           )}
           {selected === "genres" && (
-            <GenreStat token={token} setHasData={setHasData} />
+            <GenreStat token={token} setHasData={setHasData} responsive={visibility}/>
           )}
           {selected === "tracks" && (
-            <SongStat token={token} state={timerange} setHasData={setHasData} />
+            <SongStat token={token} state={timerange} setHasData={setHasData} responsive={visibility}/>
           )}
         </div>
         {!hasData && selected !== "genres" && (

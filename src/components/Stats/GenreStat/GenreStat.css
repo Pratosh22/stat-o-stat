@@ -35,3 +35,11 @@
     background-color: #eaeaea;
   }
   
+  .responsive__genre{
+    flex-direction: column;
+    font-size: 20px;
+  }
+
+  .responsive__main-chart{
+    width: 100% !important;;
+  }

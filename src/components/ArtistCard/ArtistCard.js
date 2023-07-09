@@ -3,7 +3,7 @@ import { getTopArtists } from '../../api';
 import Spinner from '../Spinner/Spinner';
 import './ArtistCard.css';
 
-function ArtistCard({ token, state }) {
+function ArtistCard({ token, state,responsive }) {
   const [artists, setArtists] = useState([]);
   const [loader, setLoader] = useState(false);
 
@@ -21,7 +21,7 @@ function ArtistCard({ token, state }) {
     };
     fetchData();
   }, [state, token]);
-
+  let visibility=responsive;
   return (
     <div className="artist">
       {loader ? (
@@ -34,7 +34,7 @@ function ArtistCard({ token, state }) {
             artists.map((artist) => (
               <div className="card" key={artist.id}>
                 <img src={artist.images[0].url} alt="artist" />
-                <div className="title">{artist.name}</div>
+                <div className={visibility ? "title" : "title responsive__title"}>{artist.name}</div>
               </div>
             ))
           )}

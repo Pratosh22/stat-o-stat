@@ -1,102 +1,109 @@
-hr{
-    margin: 0 auto;
-    width:70%;
-}
-ul{
-    list-style: none;
-    padding: 20px;
-}
-li{
-    margin-bottom: 20px;
-}
-.active{
-    color: #1DB954;
-    
-}
-li:hover{
-    color: #1DB954;
-    cursor: pointer;
+hr {
+  margin: 0 auto;
+  width: 70%;
 }
 
-i{
-    margin-right: 20px;
+ul {
+  list-style: none;
+  padding: 20px;
 }
-.followers{
-    margin-top: 20px;
-    margin-left: 20px;
-    font-size: 15px;
-    text-align: left;
-}
-.sidebar {
-    font-size: 1rem;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0; /* Adjust this if necessary to control the height of the sidebar */
-    width: 250px;
-    color: #e5e5e5;
-    background: #121212;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-.sidebar__title{
-    padding: 20px 0;
-    text-align: center;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-.sidebar__profile{
-    padding: 0 20px;
-    margin-bottom: 20px;
-}
-.sidebar__menu{
-    margin-left:20px ;
-    margin-bottom: 20px;
-    text-align: justify;
-}
-.sidebar {
-    width: 240px;
-    height: 100%;
 
-    transition: transform 0.3s;
-    overflow-y: auto;
-  }
-  
-  .sidebar__title {
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .sidebar__profile {
-    text-align: center;
-  }
-  
-  .sidebar__menu-toggle {
-    display: none;
-  }
-  
-  .sidebar__menu {
-    padding: 10px;
-  }
-  
-  .sidebar__menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .sidebar__menu li {
-    padding: 10px 0;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
+li {
+  margin-bottom: 20px;
+}
+
+.active {
+  color: #1db954;
+}
+
+li:hover {
+  color: #1db954;
+  cursor: pointer;
+}
+
+i {
+  margin-right: 20px;
+}
+
+.followers {
+  margin-top: 20px;
+  margin-left: 20px;
+  font-size: 15px;
+  text-align: left;
+}
+
+.sidebar {
+  font-size: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; /* Adjust this if necessary to control the height of the sidebar */
+  width: 250px;
+  color: #e5e5e5;
+  background: #121212;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar__title {
+  padding: 20px 0;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.sidebar__profile {
+  padding: 0 20px;
+  margin-bottom: 20px;
+}
+
+.sidebar__menu {
+  margin-left: 20px;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.sidebar {
+  width: 240px;
+  height: 100%;
+  transition: transform 0.3s;
+  overflow-y: auto;
+}
+
+.sidebar__title {
+  padding: 20px;
+  text-align: center;
+}
+
+.sidebar__profile {
+  text-align: center;
+}
+
+.sidebar__menu-toggle {
+  display: none;
+}
+
+.sidebar__menu {
+  padding: 10px;
+}
+
+.sidebar__menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar__menu li {
+  padding: 10px 0;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
 
 .mobile-menu {
   color: white;
-  display: block;
+  display: none;
 }
 
 .mobile-menu.show-menu {
@@ -108,16 +115,7 @@ i{
   padding: 0;
 }
 
-.mobile-menu li {
-  color: white;
-  padding: 10px;
-  background-color: #f0f0f0;
-  cursor: pointer;
-}
 
-.mobile-menu li.active {
-  background-color: #ccc;
-}
 
 .mobile-menu-toggle {
   display: none;
@@ -128,12 +126,80 @@ i{
   color: #fff;
 }
 
-@media (max-width: 800px) {
-  .sidebar {
-    display: none;
-  }
+.hammenu{
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}
 
+@media (max-width: 800px) {
   .mobile-menu-toggle {
     display: block;
   }
+}
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  top: 27px; /* Adjust the top value to position the menu vertically */
+  right: 15px; /* Adjust the right value to position the menu horizontally */
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: #373a47;
+}
+
+/* Color/shape of burger icon bars on hover*/
+.bm-burger-bars-hover {
+  background: #373a47;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #bdc3c7;
+}
+
+/*
+Sidebar wrapper styles
+Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+*/
+.bm-menu-wrap {
+  position: fixed;
+  height: 100%;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background-color: #121212;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: #b8b7ad;
+  padding: 0.8em;
+}
+
+/* Individual item */
+.bm-item {
+  display: inline-block;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
 }

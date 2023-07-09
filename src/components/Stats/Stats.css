@@ -41,3 +41,16 @@ h2{
     color: #1DB954;
     cursor: pointer;
 }
+.sidebar__header{
+    margin-left:10px;
+}
+.sidebar__stats-container{
+    margin-left: 0;
+    font-size: 30px;
+}
+.reduced_size{
+    font-size: 10px;
+}
+.display__artists{
+    margin-left:20px;
+}

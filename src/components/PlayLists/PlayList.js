@@ -4,7 +4,7 @@ import Spinner from "../Spinner/Spinner";
 import TrackList from "../TrackList/TrackList";
 import "./PlayList.css";
 
-function PlayList({ token, id }) {
+function PlayList({ token, id,sidebar}) {
   const [loader, setLoader] = useState(false);
   const [playlists, setPlaylists] = useState([]);
   const [visiblePlaylists, setVisiblePlaylists] = useState([]);
@@ -15,7 +15,7 @@ function PlayList({ token, id }) {
   const [tracks, setTracks] = useState([]);
   const [tracksLoader, setTracksLoader] = useState(false);
   const [showBinIcon, setShowBinIcon] = useState(false);
-
+  const visible=sidebar;
   useEffect(() => {
     setLoader(true);
     const fetchData = async () => {
@@ -115,9 +115,11 @@ function PlayList({ token, id }) {
       {tracksLoader && <Spinner />}
       <hr style={{ width: "100%" }} />
       {tracks.length === 0 && (
-        <div className="playlist__title">
-          Your Playlists...
-          <div className="show__button">
+        <div className={visible ? 'playlist__title' : 'playlist__title resposive__playlist-title'}>
+          <div>
+            <h3>Your Playlists...</h3>
+          </div>
+          <div className={visible ?"show__button" : 'show__button responsive__show-button'}>
             {showMore && (
               <button onClick={handleShowMore} className="show-more-button">
                 <i className="fa-solid fa-plus"></i>
@@ -134,7 +136,7 @@ function PlayList({ token, id }) {
         </div>
       )}
       {tracks.length === 0 ? (
-        <div className="playlist">
+        <div className={visible ? 'playlist' : 'playlist responsive__playlist'}>
           {Array.isArray(visiblePlaylists) && visiblePlaylists.length > 0 ? (
             visiblePlaylists.map((item) => (
               <div

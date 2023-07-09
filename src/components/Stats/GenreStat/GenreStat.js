@@ -10,11 +10,12 @@ import { Doughnut } from "react-chartjs-2";
 ChartJS.register(ArcElement, Legend);
 ChartJS.register(ChartDataLabels);
 
-function GenreStat({ token, state }) {
+function GenreStat({ token, state,responsive }) {
   const [artists, setTopArtists] = useState([]);
   const [chartData, setChartData] = useState({});
   const [loader, setLoader] = useState(false);
   const [chartDataUpdate, setChartDataUpdate] = useState(false);
+  let visibility=responsive;
   useEffect(() => {
     const fetchData = async () => {
       setLoader(true);
@@ -98,13 +99,13 @@ function GenreStat({ token, state }) {
   };
 
   return (
-    <div className="genre">
+    <div className={visibility ? 'genre' : 'genre responsive__genre'}>
       {loader && <Spinner />}
       {Object.keys(chartData).length === 0 && !loader ? (
         <div className="no-data-message">Not enough data to render</div>
       ) : (
         <>
-          <div className="main__chart" style={{ padding: "20px", width: "50%" }}>
+          <div className={visibility ? "main-chart" : "responsive__main-chart"} style={{ padding: "20px", width: "50%" }}>
             {chartDataUpdate && <Doughnut data={chartData} options={options} />}
             <h4 className="info">*Data is based on All-Time streaming</h4>
           </div>

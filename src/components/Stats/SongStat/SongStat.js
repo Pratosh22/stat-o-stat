@@ -4,10 +4,10 @@ import { getTopSongs } from '../../../api';
 import SongCard from '../../SongCard/SongCard';
 import Spinner from '../../Spinner/Spinner';
 
-function SongStat({ token, state, setHasData }) {
+function SongStat({ token, state, setHasData,responsive }) {
   const [loader, setLoader] = useState(false);
   const [songs, setSongs] = useState([]);
-
+  let visibility=responsive;
   useEffect(() => {
     setLoader(true);
     const fetchData = async () => {

@@ -37,6 +37,7 @@
 }
 
 .nst{
+  padding-top: 5px;
   margin-left:0px;
   width:100%;
   font-size: 1.4rem;
@@ -49,4 +50,15 @@
 .np{
   margin-left:50px;
   margin-bottom: 20px;
+}
+.show-more-button,
+.show-less-button {
+  background-color: #1db954;
+  color: #fff;
+  border: none;
+  margin-right: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
 }

@@ -27,6 +27,7 @@
   background-color: #1db954;
   color: #fff;
   border: none;
+  margin-top: 5px;
   padding: 10px 20px;
   font-size: 16px;
   border-radius: 4px;
@@ -85,4 +86,19 @@
   border-radius: 4px;
   cursor: pointer;
   margin-right: 80px;
+}
+.resposive__playlist-title{
+  margin-left: 0;
+  font-size:25px;
+  padding:0 10px;
+}
+.resposive__playlist-title > div{
+  display: flex;
+  place-items: center;
+}
+.responsive__show-button{
+  margin-right: 0;
+}
+.responsive__playlist{
+  margin-left: 20px;
 }
