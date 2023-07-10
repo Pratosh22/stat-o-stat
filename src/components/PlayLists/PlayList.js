@@ -4,7 +4,7 @@ import Spinner from "../Spinner/Spinner";
 import TrackList from "../TrackList/TrackList";
 import "./PlayList.css";
 
-function PlayList({ token, id,sidebar}) {
+function PlayList({ token, id, sidebar }) {
   const [loader, setLoader] = useState(false);
   const [playlists, setPlaylists] = useState([]);
   const [visiblePlaylists, setVisiblePlaylists] = useState([]);
@@ -14,8 +14,7 @@ function PlayList({ token, id,sidebar}) {
   const [selectedPlaylist, setSelectedPlaylist] = useState(null);
   const [tracks, setTracks] = useState([]);
   const [tracksLoader, setTracksLoader] = useState(false);
-  const [showBinIcon, setShowBinIcon] = useState(false);
-  const visible=sidebar;
+  let visible = sidebar;
   useEffect(() => {
     setLoader(true);
     const fetchData = async () => {
@@ -96,12 +95,25 @@ function PlayList({ token, id,sidebar}) {
   const handleDeletePlaylist = async (playlistId) => {
     setLoader(true);
     try {
-      const res = await unfollowPlaylist(token, playlistId);
-      //if response is empty then playlist is deleted
-      if (Object.keys(res).length === 0) {
-        alert("Playlist deleted successfully");
+      const userPrompt = prompt(
+        "Are you sure you want to delete this playlist?"
+      );
+      if (userPrompt.toLowerCase() === "yes") {
+        const res = await unfollowPlaylist(token, playlistId);
+        //if response is empty then playlist is deleted
+        if (Object.keys(res).length === 0) {
+          alert("Playlist deleted successfully");
+          setLoader(false);
+          window.location.reload();
+        }
+      }
+      //if user press cancel in prompt set loader to false
+      if(userPrompt === null){
         setLoader(false);
-        window.location.reload();
+      }
+      else{
+        alert("Type yes to delete playlist");
+        setLoader(false);
       }
     } catch (error) {
       console.log(error);
@@ -115,11 +127,21 @@ function PlayList({ token, id,sidebar}) {
       {tracksLoader && <Spinner />}
       <hr style={{ width: "100%" }} />
       {tracks.length === 0 && (
-        <div className={visible ? 'playlist__title' : 'playlist__title resposive__playlist-title'}>
+        <div
+          className={
+            visible
+              ? "playlist__title"
+              : "playlist__title resposive__playlist-title"
+          }
+        >
           <div>
             <h3>Your Playlists...</h3>
           </div>
-          <div className={visible ?"show__button" : 'show__button responsive__show-button'}>
+          <div
+            className={
+              visible ? "show__button" : "show__button responsive__show-button"
+            }
+          >
             {showMore && (
               <button onClick={handleShowMore} className="show-more-button">
                 <i className="fa-solid fa-plus"></i>
@@ -136,7 +158,7 @@ function PlayList({ token, id,sidebar}) {
         </div>
       )}
       {tracks.length === 0 ? (
-        <div className={visible ? 'playlist' : 'playlist responsive__playlist'}>
+        <div className={visible ? "playlist" : "playlist responsive__playlist"}>
           {Array.isArray(visiblePlaylists) && visiblePlaylists.length > 0 ? (
             visiblePlaylists.map((item) => (
               <div
@@ -179,7 +201,7 @@ function PlayList({ token, id,sidebar}) {
           <button onClick={handleBackButtonClick} className="back">
             <i className="fa-solid fa-arrow-left"></i>Back
           </button>
-          <TrackList tracks={tracks} id={selectedPlaylist}/>
+          <TrackList tracks={tracks} id={selectedPlaylist} sidebar={visible}/>
         </div>
       )}
     </>

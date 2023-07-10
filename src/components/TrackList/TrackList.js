@@ -1,10 +1,12 @@
 import React from "react";
-import placeholderImage from "../../placeholder-image.png";
+import placeholderImage from "../../images/placeholder-image.png";
 import "./TrackList.css";
 import { useState } from "react";
 import EditModal from "../EditModal/EditModal";
-function TrackList({ tracks,id }) {
+function TrackList({ tracks,id,sidebar }) {
   const [show, setShow] = useState(false);
+  let visible = sidebar;
+
   function formatDuration(duration) {
     const minutes = Math.floor(duration / 60000);
     const seconds = ((duration % 60000) / 1000).toFixed(0);
@@ -23,7 +25,7 @@ function TrackList({ tracks,id }) {
           playlist_id={id}
         />
       ) : null}
-      <div className="tracklist-container">
+      <div className={visible ? 'tracklist-container'  : 'tracklist-container responsive__tracklist-container'}>
         <div className="edit__div">
           <button className="edit" onClick={handleEdit}>
             <i className="fa-solid fa-user-pen"></i>Edit Playlist

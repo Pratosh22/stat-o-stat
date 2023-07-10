@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import placeholder_img from "../../placeholder-image.png";
+import placeholder_img from "../../images/placeholder-image.png";
 import { slide as Menu } from "react-burger-menu";
 import "./Sidebar.css";
 

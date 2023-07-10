@@ -1,7 +1,7 @@
 import React, { useState, useEffect, lazy, Suspense } from "react";
 import "./App.css";
-import logo from "./logo.png";
-import mockup from "./mockup.png";
+import logo from "./images/logo.png";
+import mockup from "./images/mockup.png";
 import SideBar from "./components/SideBar/SideBar";
 
 const Home = lazy(() => import("./components/Home/Home"));
@@ -10,7 +10,7 @@ const Playlists = lazy(() => import("./components/PlayLists/PlayList"));
 
 function App() {
   const CLIENT_ID = "cec7b93ed47b441eb8056ba8ffc7be20";
-  const REDIRECT_URI = "http://localhost:3000";
+  const REDIRECT_URI = "https://stat-o-stat.vercel.app/";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize/";
   const RESPONSE_TYPE = "token";
   const scopes = [

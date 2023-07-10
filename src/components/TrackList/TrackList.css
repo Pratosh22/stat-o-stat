@@ -102,3 +102,19 @@ th:nth-child(5) {
     display: flex;
     justify-content: flex-end;
 }
+.responsive__tracklist-container{
+  margin-left: 0;
+}
+
+@media only screen and (max-width: 768px) {
+  .track__name:hover,
+  .tracklist td:hover {
+    overflow-x: scroll;
+    white-space: nowrap;
+  }
+  .edit__div{
+    justify-content: normal;
+    margin-left: 20px;
+  }
+  
+}
