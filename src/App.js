@@ -30,7 +30,6 @@ function App() {
   const handleMenuClick = (component) => {
     setSelectedComponent(component);
   };
-  console.log(REDIRECT_URI);
   useEffect(() => {
     const handleResize = () => {
       setDisplaySidebar(window.innerWidth >= 800);

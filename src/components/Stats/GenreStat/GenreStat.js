@@ -4,18 +4,20 @@ import "./GenreStat.css";
 import Spinner from "../../Spinner/Spinner";
 import { Chart as ChartJS, ArcElement, Legend } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
-
 import { Doughnut } from "react-chartjs-2";
+
 
 ChartJS.register(ArcElement, Legend);
 ChartJS.register(ChartDataLabels);
 
-function GenreStat({ token, state,responsive }) {
+function GenreStat({ token, state, responsive }) {
   const [artists, setTopArtists] = useState([]);
   const [chartData, setChartData] = useState({});
   const [loader, setLoader] = useState(false);
   const [chartDataUpdate, setChartDataUpdate] = useState(false);
-  let visibility=responsive;
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 800);
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+
   useEffect(() => {
     const fetchData = async () => {
       setLoader(true);
@@ -28,7 +30,7 @@ function GenreStat({ token, state,responsive }) {
         return; // No genre data, render "Not enough data to render" message
       }
 
-      //take only top 5
+      // Take only top 5
       const labels = Object.keys(genreCount).slice(0, 20);
       const data = Object.values(genreCount).slice(0, 20);
 
@@ -98,45 +100,96 @@ function GenreStat({ token, state,responsive }) {
     },
   };
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 800);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
-    <div className={visibility ? 'genre' : 'genre responsive__genre'}>
+    <div className="genre">
       {loader && <Spinner />}
       {Object.keys(chartData).length === 0 && !loader ? (
         <div className="no-data-message">Not enough data to render</div>
       ) : (
         <>
-          <div className={visibility ? "main-chart" : "responsive__main-chart"} style={{ padding: "20px", width: "50%" }}>
+          <div className="main-chart">
             {chartDataUpdate && <Doughnut data={chartData} options={options} />}
             <h4 className="info">*Data is based on All-Time streaming</h4>
           </div>
-          <div className="genre__list">
-            <table className="genre__table">
-              <thead>
-                <tr>
-                  <th>Genre</th>
-                  <th>Count</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.keys(getGenreCount(artists))
-                  .slice(0, 10)
-                  .map((genre) => {
-                    const count = getGenreCount(artists)[genre];
-                    const totalGenres = Object.keys(getGenreCount(artists)).length;
-                    const percentage = ((count / totalGenres) * 100).toFixed(2);
-                    return (
-                      <tr key={genre}>
-                        <td>{genre.toUpperCase()}</td>
-                        <td>{percentage}%</td>
+          {isMobile ? (
+            <div className="dropdown">
+              <button className="dropdown-toggle" onClick={() => setDropdownVisible(!dropdownVisible)}>
+              <i className="fa-solid fa-caret-down"></i>
+              View distribution
+              </button>
+              {dropdownVisible && (
+                <div className="dropdown-menu">
+                  <table className="genre__table">
+                    <thead>
+                      <tr>
+                        <th>Genre</th>
+                        <th>Count</th>
                       </tr>
-                    );
-                  })}
-              </tbody>
-            </table>
-            <h4 className="info" style={{ marginTop: "30px" }}>
-              *Top 20 all-time data based on Artists
-            </h4>
-          </div>
+                    </thead>
+                    <tbody>
+                      {Object.keys(getGenreCount(artists))
+                        .slice(0, 10)
+                        .map((genre) => {
+                          const count = getGenreCount(artists)[genre];
+                          const totalGenres = Object.keys(getGenreCount(artists)).length;
+                          const percentage = ((count / totalGenres) * 100).toFixed(2);
+                          return (
+                            <tr key={genre}>
+                              <td>{genre.toUpperCase()}</td>
+                              <td>{percentage}%</td>
+                            </tr>
+                          );
+                        })}
+                    </tbody>
+                  </table>
+                  <h4 className="info" style={{ marginTop: "30px" }}>
+                    *Top 20 all-time data based on Artists
+                  </h4>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="genre__list">
+              <table className="genre__table">
+                <thead>
+                  <tr>
+                    <th>Genre</th>
+                    <th>Count</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {Object.keys(getGenreCount(artists))
+                    .slice(0, 10)
+                    .map((genre) => {
+                      const count = getGenreCount(artists)[genre];
+                      const totalGenres = Object.keys(getGenreCount(artists)).length;
+                      const percentage = ((count / totalGenres) * 100).toFixed(2);
+                      return (
+                        <tr key={genre}>
+                          <td>{genre.toUpperCase()}</td>
+                          <td>{percentage}%</td>
+                        </tr>
+                      );
+                    })}
+                </tbody>
+              </table>
+              <h4 className="info" style={{ marginTop: "30px" }}>
+                *Top 20 all-time data based on Artists
+              </h4>
+            </div>
+          )}
         </>
       )}
     </div>

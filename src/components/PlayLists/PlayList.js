@@ -91,14 +91,15 @@ function PlayList({ token, id, sidebar }) {
     setSelectedPlaylist(null);
     setTracks([]);
   };
-
+  
   const handleDeletePlaylist = async (playlistId) => {
     setLoader(true);
     try {
       const userPrompt = prompt(
         "Are you sure you want to delete this playlist?"
       );
-      if (userPrompt.toLowerCase() === "yes") {
+      console.log(userPrompt);
+      if (userPrompt && userPrompt.toLowerCase() === "yes") {
         const res = await unfollowPlaylist(token, playlistId);
         //if response is empty then playlist is deleted
         if (Object.keys(res).length === 0) {
@@ -108,7 +109,7 @@ function PlayList({ token, id, sidebar }) {
         }
       }
       //if user press cancel in prompt set loader to false
-      if(userPrompt === null){
+      else if (userPrompt === "" || userPrompt === null) {
         setLoader(false);
       }
       else{
@@ -118,7 +119,6 @@ function PlayList({ token, id, sidebar }) {
     } catch (error) {
       console.log(error);
     }
-    console.log(`Deleting playlist with ID: ${playlistId}`);
   };
 
   return (

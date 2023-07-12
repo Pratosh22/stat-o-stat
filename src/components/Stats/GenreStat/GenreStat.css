@@ -9,6 +9,7 @@
     justify-content: space-between;
 }
 .genre__list{
+    align-self: center;
     margin-top: 2rem;
     margin-right: 5rem;
 }
@@ -43,3 +44,40 @@
   .responsive__main-chart{
     width: 100% !important;;
   }
+  .main-chart{
+    padding: 20px;
+    width: 50%;
+  }
+  .dropdown-toggle{
+    background-color: #1DB954;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+  @media only screen and (max-width:768px){
+    .hide-table {
+      display: none;
+    }
+    .genre{
+        flex-direction: column;
+    }
+    .main-chart{
+      width: 100%;
+    }
+    .genre__table{
+      font-size: 20px;
+      width: 80%;
+      margin: 0 auto;
+    }
+    .info{
+      font-size:20px;
+      margin-bottom: 20px;
+    }
+ }
