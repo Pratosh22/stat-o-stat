@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# Stat-O-Stat 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Stat-O-Stat Logo]("https://www.analyticsvidhya.com/blog/2023/03/solving-spotify-multiclass-genre-classification-problem/)
 
-## Available Scripts
+Welcome to Stat-O-Stat, your ultimate Spotify companion app! This application provides you with powerful features to enhance your music streaming experience. With Stat-O-Stat, you can easily explore your top artists, songs, and genres, receive personalized song recommendations, and create playlists based on your preferences.
 
-In the project directory, you can run:
+[Live Demo](https://stat-o-stat.vercel.app/) | [Documentation](https://github.com/pratosh22/stat-o-stat/blob/main/docs/README.md) | [Contributing Guidelines](https://github.com/pratosh22/stat-o-stat/blob/main/CONTRIBUTING.md)
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Top Artists, Songs, and Genres**: Get insights into your music listening habits by viewing your top artists, songs, and genres from Spotify. Discover which artists you've been listening to the most and explore the songs that have captured your attention.
+- **Personalized Song Recommendations**: Stat-O-Stat analyzes your top recent songs and artists to generate personalized song recommendations. Discover new music that aligns with your preferences and expand your musical horizons.
+- **Playlist Creation**: Utilize the power of personalized recommendations to create playlists that perfectly match your taste in music. Save time and effort by letting Stat-O-Stat curate a playlist tailored to your preferences.
+- **Genre Distribution Visualization**: Gain a deeper understanding of your music preferences with the genre distribution doughnut graph. Visualize the distribution of genres in your music library and explore your diverse range of musical interests.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation
 
-### `npm test`
+To get started with Stat-O-Stat on your local machine, follow these steps:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone the repository:
 
-### `npm run build`
+```bash
+git clone https://github.com/pratosh22/stat-o-stat.git
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Navigate to the project directory:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+cd stat-o-stat
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Install the dependencies:
 
-### `npm run eject`
+```bash
+npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+4. Configure your Spotify API credentials:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   - Create a Spotify developer account at [https://developer.spotify.com/](https://developer.spotify.com/).
+   - Create a new application and obtain the client ID and client secret.
+   - Update the configuration file `config.js` with your Spotify API credentials.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+5. Start the development server:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+npm start
+```
 
-## Learn More
+6. Open your web browser and visit [http://localhost:3000](http://localhost:3000) to access Stat-O-Stat.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Contributing
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+We welcome contributions from the community! If you're interested in contributing to Stat-O-Stat, please review our [Contributing Guidelines](https://github.com/pratosh22/stat-o-stat/blob/main/CONTRIBUTING.md) to get started.
 
-### Code Splitting
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT). Refer to the [LICENSE](https://github.com/pratosh22/stat-o-stat/blob/main/LICENSE) file for more information.
 
-### Analyzing the Bundle Size
+## Acknowledgements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- This app uses the Spotify Web API to retrieve user data and recommendations. Special thanks to Spotify for providing the API.
+- The doughnut graph visualization is powered by [Chart.js](https://www.chartjs.org/), a versatile JavaScript charting library.
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
