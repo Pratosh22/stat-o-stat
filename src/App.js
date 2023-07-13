@@ -10,7 +10,7 @@ const Playlists = lazy(() => import("./components/PlayLists/PlayList"));
 
 function App() {
   const CLIENT_ID = "cec7b93ed47b441eb8056ba8ffc7be20";
-  const REDIRECT_URI = "http://localhost:3000";
+  const REDIRECT_URI = "https://stat-o-stat.vercel.app/";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize/";
   const RESPONSE_TYPE = "token";
   const scopes = [
