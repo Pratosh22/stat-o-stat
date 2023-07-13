@@ -1,13 +1,13 @@
 # Stat-O-Stat 
 
-![Stat-O-Stat Logo](https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_RGB_Green.png)
+<img src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_RGB_Green.png" alt="Stat-O-Stat Logo" width="400" style="margin-bottom:20px" >
 
 Welcome to Stat-O-Stat, your ultimate Spotify companion app! This application provides you with powerful features to enhance your music streaming experience. With Stat-O-Stat, you can easily explore your top artists, songs, and genres, receive personalized song recommendations, and create playlists based on your preferences.
 
 [Live Demo](https://stat-o-stat.vercel.app/) | [Documentation](https://github.com/pratosh22/stat-o-stat/blob/main/docs/README.md) 
 
 ## Features
-gi
+
 - **Top Artists, Songs, and Genres**: Get insights into your music listening habits by viewing your top artists, songs, and genres from Spotify. Discover which artists you've been listening to the most and explore the songs that have captured your attention.
 - **Personalized Song Recommendations**: Stat-O-Stat analyzes your top recent songs and artists to generate personalized song recommendations. Discover new music that aligns with your preferences and expand your musical horizons.
 - **Playlist Creation**: Utilize the power of personalized recommendations to create playlists that perfectly match your taste in music. Save time and effort by letting Stat-O-Stat curate a playlist tailored to your preferences.
