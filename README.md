@@ -52,7 +52,7 @@ npm start
 
 ## License
 
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT). Refer to the [LICENSE](https://github.com/pratosh22/stat-o-stat/blob/main/LICENSE) file for more information.
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT). Refer to the [LICENSE](https://github.com/Pratosh22/stat-o-stat/blob/master/LICENSE) file for more information.
 
 ## Acknowledgements
 
