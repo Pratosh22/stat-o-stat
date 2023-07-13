@@ -3,14 +3,14 @@ import "./App.css";
 import logo from "./images/logo.png";
 import mockup from "./images/mockup.png";
 import SideBar from "./components/SideBar/SideBar";
-
+import  Footer from "./components/Footer/Footer";
 const Home = lazy(() => import("./components/Home/Home"));
 const Stats = lazy(() => import("./components/Stats/Stats"));
 const Playlists = lazy(() => import("./components/PlayLists/PlayList"));
 
 function App() {
   const CLIENT_ID = "cec7b93ed47b441eb8056ba8ffc7be20";
-  const REDIRECT_URI = "https://stat-o-stat.vercel.app/";
+  const REDIRECT_URI = "http://localhost:3000";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize/";
   const RESPONSE_TYPE = "token";
   const scopes = [
@@ -59,6 +59,7 @@ function App() {
 
     setToken(receivedToken);
   }, []);
+
 
   const logout = () => {
     setToken("");
@@ -132,8 +133,10 @@ function App() {
             </h4>
           </div>
           <img src={mockup} alt="" style={{ width: "60%" }} className="mockup"/>
+          <Footer />
         </div>
       )}
+      
     </div>
   );
 }

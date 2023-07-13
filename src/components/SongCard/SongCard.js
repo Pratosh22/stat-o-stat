@@ -45,10 +45,10 @@ function SongCard({ songs, state,sidebar }) {
     <div>
       <div className={visibility ? "home__buttons" : "home__buttons nsb"}>
         {songs.length > displayedSongs && (
-          <button className="show-more-button" onClick={handleShowMore}>Show More</button>
+          <button className="show-more-button" onClick={handleShowMore}><i className="fa-solid fa-plus"></i>Show More</button>
         )}
         {showLessButtonVisible && (
-          <button onClick={handleShowLess} className="show-less-button">Show Less</button>
+          <button onClick={handleShowLess} className="show-less-button"><i className="fa-solid fa-minus"></i>Show Less</button>
         )}
       </div>
 

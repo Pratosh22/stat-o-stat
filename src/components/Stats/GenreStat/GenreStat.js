@@ -97,6 +97,9 @@ function GenreStat({ token, state, responsive }) {
         },
         padding: 200,
       },
+      datalabels: {
+        display: false,
+      }
     },
   };
 
@@ -111,7 +114,6 @@ function GenreStat({ token, state, responsive }) {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
   return (
     <div className="genre">
       {loader && <Spinner />}
@@ -125,8 +127,9 @@ function GenreStat({ token, state, responsive }) {
           </div>
           {isMobile ? (
             <div className="dropdown">
-              <button className="dropdown-toggle" onClick={() => setDropdownVisible(!dropdownVisible)}>
-              <i className="fa-solid fa-caret-down"></i>
+              <button className="dropdown-toggle" onClick={() => setDropdownVisible(!dropdownVisible)
+              }>
+              <i className={dropdownVisible ? "fa-solid fa-caret-up" : "fa-solid fa-caret-down"}></i>
               View distribution
               </button>
               {dropdownVisible && (

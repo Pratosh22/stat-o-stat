@@ -1,0 +1,60 @@
+footer span {
+    color: #666;
+    font-size: 12px;
+    display: block;
+    position: absolute;
+    bottom: 10px;
+    width: 90%;
+    left: 50%;
+    top: 45%;
+    bottom: auto;
+    right: auto;
+    transform: translateX(-50%) translateY(-50%);
+    text-align: center;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #D8D8D8;
+}
+
+span a {
+    margin-left: 8px;
+    color: #E90606;
+    text-decoration: none;
+    background-color: inherit;
+}
+
+span .fa {
+    color: #E90606;
+    margin: 0 8px;
+    font-size: 10px;
+    animation: pound .35s infinite alternate;
+}
+
+@keyframes pound {
+    to {
+        transform: scale(1.1);
+    }
+}
+
+@-webkit-keyframes pound {
+    to {
+        transform: scale(1.1);
+    }
+}
+
+@media screen  and (max-width: 768px) {
+    .footer{
+        margin-top: 2rem;
+    }
+}
+
+@media only screen and (max-width:768px){
+    .footer{
+        margin-top: 3rem;
+    }
+}
+    
