@@ -31,7 +31,6 @@ function SongStats({ token,sidebar }) {
   useEffect(() => {
     setHasData(true);
   }, [selected]);
-  console.log(visibility)
   return (
     <div className="stats">
       <hr style={{ width: "100%" }} />

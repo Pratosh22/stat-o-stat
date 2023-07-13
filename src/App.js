@@ -69,6 +69,10 @@ function App() {
     setUserId(id);
   };
 
+  const closeSidebar = () => {
+    setDisplaySidebar(false);
+  };
+
   return (
     <div className="App">
       <header className={displaySidebar ? "App-header" : "App-header nsd"}>
@@ -97,6 +101,7 @@ function App() {
             handleMenuClick={handleMenuClick}
             user={getUserId}
             visible={displaySidebar}
+            closeSidebar={closeSidebar}
           />
           <div className="content">
             <Suspense fallback={<div>Loading...</div>}>
@@ -126,7 +131,7 @@ function App() {
               Discover new songs and playlists made <span> for you.</span>
             </h4>
           </div>
-          <img src={mockup} alt="" style={{ width: "60%" }} />
+          <img src={mockup} alt="" style={{ width: "60%" }} className="mockup"/>
         </div>
       )}
     </div>

@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  
 }
 
 .login__button {
@@ -104,5 +105,17 @@ main{
 @media only screen and (max-width:768px){
    .logout{
     margin-top: 0.8rem;
+   }
+   .mockup{
+      display: none;
+   }
+   .about{
+    width: 100%;
+    text-align: start;
+    word-spacing: 6px;
+   }
+   
+   .login__button{
+    margin-right:10px;
    }
 }
