@@ -1,6 +1,6 @@
 import React, { useState, useEffect, lazy, Suspense } from "react";
 import "./App.css";
-import {Analytics} from '@vercel/analytics';
+import { Analytics } from '@vercel/analytics/react';
 import logo from "./images/logo.png";
 import mockup from "./images/mockup.png";
 import SideBar from "./components/SideBar/SideBar";
