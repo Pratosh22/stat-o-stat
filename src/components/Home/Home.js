@@ -5,7 +5,7 @@ import Spinner from "../Spinner/Spinner";
 import "./Home.css";
 import { createPlaylist, addTracksToPlaylist } from "../../api";
 
-function Home({ token, id,sidebar }) {
+function Home({ token, id, sidebar }) {
   const [loader, setLoader] = useState(false);
   const [artists, setArtists] = useState([]);
   const [songs, setSongs] = useState([]);
@@ -15,7 +15,7 @@ function Home({ token, id,sidebar }) {
   const [uris, setUris] = useState([]);
   const user_id = id;
   const auth_token = token;
-  const visibility=sidebar;
+  const visibility = sidebar;
   useEffect(() => {
     setLoader(true);
     const fetchData = async () => {
@@ -25,8 +25,14 @@ function Home({ token, id,sidebar }) {
         setArtists(topArtists);
         setSongs(topSongs);
         if (topArtists.length === 0 || topSongs.length === 0) {
-          setLoader(false);
-          setSongCard(false);
+          const topSongs = await getTopSongs(token, 5, "long_term");
+          if (topSongs.length === 0) {
+            setSongCard(false);
+            setLoader(false);
+            return;
+          }
+          setSongs(topSongs);
+          handleRecommendations(topArtists, topSongs);
         } else {
           handleRecommendations(topArtists, topSongs);
         }
@@ -65,7 +71,11 @@ function Home({ token, id,sidebar }) {
         "A playlist curated by your recommendation"
       );
       const playlist_id = response.id;
-      const addTracks = await addTracksToPlaylist(auth_token, playlist_id, uris);
+      const addTracks = await addTracksToPlaylist(
+        auth_token,
+        playlist_id,
+        uris
+      );
       setLoader(false);
       alert("Playlist created successfully");
     } catch (error) {
@@ -80,8 +90,10 @@ function Home({ token, id,sidebar }) {
         <Spinner />
       ) : (
         <>
-          <div className={visibility ? 'home__title' : 'home__title nst'}>
-            <div className={visibility ? 'title' : 'title nt'}>Songs you may like...</div>
+          <div className={visibility ? "home__title" : "home__title nst"}>
+            <div className={visibility ? "title" : "title nt"}>
+              Songs you may like...
+            </div>
             <div className="refresh">
               <i className="fa-solid fa-arrows-rotate" onClick={reload}></i>
             </div>
@@ -97,7 +109,11 @@ function Home({ token, id,sidebar }) {
           )}
           <div className="create__playlist">
             <button
-              className={visibility ? 'create__playlist__button' : 'create__playlist__button np'}
+              className={
+                visibility
+                  ? "create__playlist__button"
+                  : "create__playlist__button np"
+              }
               onClick={handlePlaylistCreation}
               disabled={loader}
             >

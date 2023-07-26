@@ -37,7 +37,8 @@ function SideBar(props) {
   };
 
   const followers = user.followers ? user.followers.total : null;
-  const photo = user.images ? user.images[0].url : null;
+  const photo = user.images && user.images.length > 0 ? user.images[0].url : placeholder_img;
+
   const visibility = props.visible;
 
   const logout = () => {
